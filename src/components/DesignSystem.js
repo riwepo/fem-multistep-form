@@ -1,5 +1,8 @@
 import React from "react";
 import ProgressIndicator from "./ProgressIndicator";
+import StepControl from "./StepControl";
+
+import "./DesignSystem.css";
 
 const progressData = [
   { step: 1, isActive: true },
@@ -10,8 +13,12 @@ const progressData = [
 
 function DesignSystem() {
   return (
-    <div>
+    <div className="design-system grid">
       <ProgressIndicator data={progressData} />
+      <StepControl canGoBack={false} isValid={true} isLastPage={false} />
+      <StepControl canGoBack={true} isValid={true} isLastPage={false} />
+      <StepControl canGoBack={true} isValid={true} isLastPage={true} />
+      <StepControl canGoBack={true} isValid={false} isLastPage={false} />
     </div>
   );
 }

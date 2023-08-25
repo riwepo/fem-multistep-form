@@ -10,7 +10,9 @@
 :root {
   /* colors */
   --clr-marine-blue: 213, 96%, 18%;
+  --clr-marine-blue-tint: 213 40% 35%;
   --clr-purplish-blue: 243, 100%, 62%;
+  --clr-purplish-blue-tint: 243, 100%, 70%;
   --clr-pastel-blue: 228, 100%, 84%;
   --clr-light-blue: 206, 94%, 87%;
   --clr-strawberry-red: 354, 84%, 57%;
@@ -104,15 +106,19 @@
 
 .bg-light-blue {
   background-color: hsl(var(--clr-light-blue));
+  --clr-marine-blue: hsl(243, 100%, 70%);
 }
 .bg-light-gray {
   background-color: hsl(var(--clr-light-gray));
 }
-.bg-purplish-blue {
-  background-color: hsl(var(--clr-purplish-blue));
-}
 .bg-marine-blue {
   background-color: hsl(var(--clr-marine-blue));
+}
+.bg-marine-blue-tint {
+  background-color: hsl(var(--clr-marine-blue-tint));
+}
+.bg-purplish-blue {
+  background-color: hsl(var(--clr-purplish-blue));
 }
 .bg-strawberry-red {
   background-color: hsl(var(--clr-strawberry-red));
