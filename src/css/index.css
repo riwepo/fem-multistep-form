@@ -117,6 +117,9 @@
 .bg-strawberry-red {
   background-color: hsl(var(--clr-strawberry-red));
 }
+.bg-transparent {
+  background-color: transparent;
+}
 .bg-white {
   background-color: hsl(var(--clr-white));
 }
@@ -209,7 +212,8 @@ html {
 body {
   font-family: var(--ff-sans-normal);
   font-size: var(--fs-400);
-  background-color: hsl(var(--clr-light-blue));
+  /* background-color: hsl(var(--clr-magnolia)); */
+  background-color: black;
   color: hsl(var(--clr-cool-gray));
   line-height: 1.5;
   overflow-x: hidden;

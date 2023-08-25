@@ -1,7 +1,19 @@
 import React from "react";
 
-function ProgressIndicator() {
-  return <h1>progress indicator</h1>;
+import ProgressIndicatorItem from "./ProgressIndicatorItem";
+
+import "./ProgressIndicator.css";
+
+function ProgressIndicator({ data }) {
+  return (
+    <ul className="progress-indicator flex">
+      {data.map((item) => {
+        return (
+          <ProgressIndicatorItem step={item.step} isActive={item.isActive} />
+        );
+      })}
+    </ul>
+  );
 }
 
 export default ProgressIndicator;

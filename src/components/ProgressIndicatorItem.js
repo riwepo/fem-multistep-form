@@ -1,7 +1,17 @@
 import React from "react";
 
-function ProgressIndicatorItem() {
-  return <h1>progress indicator item</h1>;
+import "./ProgressIndicatorItem.css";
+
+function ProgressIndicatorItem({ step, isActive }) {
+  return (
+    <li
+      className={`progress-indicator-item fs-400 text-white bg-transparent  ${
+        isActive ? "progress-indicator-item--active" : undefined
+      }`}
+    >
+      <p>{step}</p>
+    </li>
+  );
 }
 
 export default ProgressIndicatorItem;

@@ -1,0 +1,15 @@
+.progress-indicator-item {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  width: 4rem;
+  aspect-ratio: 1;
+  border: 1px solid hsl(var(--clr-white));
+  border-radius: 50%;
+  /* place-items: center; */
+}
+.progress-indicator-item.progress-indicator-item--active {
+  background-color: hsl(var(--clr-light-blue));
+  color: hsl(var(--clr-marine-blue));
+  border: none;
+}
