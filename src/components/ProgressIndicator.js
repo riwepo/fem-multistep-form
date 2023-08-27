@@ -1,6 +1,6 @@
 import React from "react";
 
-import ProgressIndicatorItem from "./ProgressIndicatorItem";
+import ProgressStepIndicator from "./ProgressStepIndicator";
 
 import "./ProgressIndicator.css";
 
@@ -9,7 +9,11 @@ function ProgressIndicator({ data }) {
     <ul className="progress-indicator flex">
       {data.map((item) => {
         return (
-          <ProgressIndicatorItem step={item.step} isActive={item.isActive} />
+          <ProgressStepIndicator
+            number={item.step}
+            title={item.title}
+            isActive={item.isActive}
+          />
         );
       })}
     </ul>
