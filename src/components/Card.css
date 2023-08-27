@@ -1,0 +1,4 @@
+.card {
+  background-color: hsl(var(--clr-white));
+  border-radius: 1rem;
+}
