@@ -1,4 +1,4 @@
-.progress-indicator-item {
+.progress-step-indicator {
   display: grid;
   justify-content: center;
   align-items: center;
@@ -6,9 +6,8 @@
   aspect-ratio: 1;
   border: 1px solid hsl(var(--clr-white));
   border-radius: 50%;
-  /* place-items: center; */
 }
-.progress-indicator-item.progress-indicator-item--active {
+.progress-step-indicator.progress-step-indicator--active {
   background-color: hsl(var(--clr-light-blue));
   color: hsl(var(--clr-marine-blue));
   border: none;
