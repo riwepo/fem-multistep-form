@@ -5,10 +5,10 @@ import StepControl from "./StepControl";
 import "./DesignSystem.css";
 
 const progressData = [
-  { step: 1, isActive: true },
-  { step: 2, isActive: false },
-  { step: 3, isActive: false },
-  { step: 4, isActive: false },
+  { step: 1, title: "Your info", isActive: true },
+  { step: 2, title: "Select plan", isActive: false },
+  { step: 3, title: "Add-ons", isActive: false },
+  { step: 4, title: "Summary", isActive: false },
 ];
 
 function DesignSystem() {

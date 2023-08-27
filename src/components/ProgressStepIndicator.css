@@ -1,14 +1,32 @@
 .progress-step-indicator {
+  align-items: center;
+}
+.progress-step-indicator .indicator {
   display: grid;
   justify-content: center;
   align-items: center;
-  width: 4rem;
-  aspect-ratio: 1;
+  width: 6rem;
+  height: 6rem;
   border: 1px solid hsl(var(--clr-white));
   border-radius: 50%;
 }
-.progress-step-indicator.progress-step-indicator--active {
+
+.progress-step-indicator .indicator.progress-step-indicator--active {
   background-color: hsl(var(--clr-light-blue));
   color: hsl(var(--clr-marine-blue));
   border: none;
+}
+
+.progress-step-indicator .info {
+  display: none;
+}
+
+.progress-step-indicator .step-name {
+  color: hsl(var(--clr-white) / 50%);
+}
+
+@media (min-width: 720px) {
+  .progress-step-indicator .info {
+    display: block;
+  }
 }

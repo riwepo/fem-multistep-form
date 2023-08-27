@@ -1,2 +1,5 @@
-.progress-indicator {
+@media (min-width: 720px) {
+  .progress-indicator {
+    flex-direction: column;
+  }
 }
