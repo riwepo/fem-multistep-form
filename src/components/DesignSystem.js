@@ -1,6 +1,9 @@
 import React from "react";
 import ProgressIndicator from "./ProgressIndicator";
 import StepControl from "./StepControl";
+import Plan from "./Plan";
+
+import { PLANS, TIME_SPANS } from "../utils";
 
 import "./DesignSystem.css";
 
@@ -19,6 +22,12 @@ function DesignSystem() {
       <StepControl canGoBack={true} isValid={true} isLastPage={false} />
       <StepControl canGoBack={true} isValid={true} isLastPage={true} />
       <StepControl canGoBack={true} isValid={false} isLastPage={false} />
+      <Plan plan={PLANS.arcade} timeSpan={TIME_SPANS.month} />
+      <Plan plan={PLANS.arcade} timeSpan={TIME_SPANS.year} />
+      <Plan plan={PLANS.advanced} timeSpan={TIME_SPANS.month} />
+      <Plan plan={PLANS.advanced} timeSpan={TIME_SPANS.year} />
+      <Plan plan={PLANS.pro} timeSpan={TIME_SPANS.month} />
+      <Plan plan={PLANS.pro} timeSpan={TIME_SPANS.year} />
     </div>
   );
 }

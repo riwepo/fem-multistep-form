@@ -1,0 +1,11 @@
+.plan img {
+  height: 4rem;
+  aspect-ratio: 1;
+}
+.plan .bonus {
+  display: none;
+}
+
+.plan .bonus.bonus--active {
+  display: block;
+}
