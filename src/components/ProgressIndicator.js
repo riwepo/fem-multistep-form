@@ -10,6 +10,7 @@ function ProgressIndicator({ data }) {
       {data.map((item) => {
         return (
           <ProgressStepIndicator
+            key={item.step}
             number={item.step}
             title={item.title}
             isActive={item.isActive}
