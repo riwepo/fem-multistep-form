@@ -164,6 +164,10 @@
   text-transform: uppercase;
 }
 
+.capitalize {
+  text-transform: capitalize;
+}
+
 .fs-900 {
   font-size: var(--fs-900);
 }
