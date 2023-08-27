@@ -1,0 +1,22 @@
+.toggle-switch {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 6rem;
+  height: 3rem;
+  border-radius: 1.5rem;
+  background-color: hsl(var(--clr-marine-blue));
+  padding: 0.5rem;
+}
+
+.toggle-switch .indicator {
+  width: 2rem;
+  height: 2rem;
+  background-color: hsl(var(--clr-light-gray));
+  border-radius: 1rem;
+  transition: transform 500ms;
+}
+
+.toggle-switch .indicator.indicator--active {
+  transform: translateX(150%);
+}
