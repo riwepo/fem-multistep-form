@@ -9,6 +9,7 @@ import "./DesignSystem.css";
 import ToggleSwitch from "./ToggleSwitch";
 import MonthYearToggleSwitch from "./MonthYearToggleSwitch";
 import AddOn from "./AddOn";
+import Checkbox from "./Checkbox";
 
 const progressData = [
   { step: 1, title: "Your info", isActive: true },
@@ -33,6 +34,8 @@ function DesignSystem() {
       <Plan plan={PLANS.pro} timeSpan={TIME_SPANS.year} />
       <ToggleSwitch isActive={false} onChange={null} />
       <MonthYearToggleSwitch />
+      <Checkbox isActive={false} onChange={null} />
+      <Checkbox isActive={true} onChange={null} />
       <AddOn addOn={ADD_ONS.online} timeSpan={TIME_SPANS.month} />
       <AddOn addOn={ADD_ONS.online} timeSpan={TIME_SPANS.year} />
       <AddOn addOn={ADD_ONS.storage} timeSpan={TIME_SPANS.month} />
