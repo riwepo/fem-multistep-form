@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import Card from "./Card";
 
@@ -6,10 +6,9 @@ import { getIcon, getPrice } from "../utils";
 
 import "./Plan.css";
 
-function Plan({ plan, timeSpan }) {
-  const [isActive, setIsActive] = useState(false);
+function Plan({ plan, timeSpan, isActive, onActivated }) {
   const clickHandler = (event) => {
-    setIsActive((current) => !current);
+    onActivated && onActivated();
   };
   return (
     <Card className={`card-plan ${isActive ? "card-plan--active" : undefined}`}>

@@ -38,12 +38,12 @@ function DesignSystem() {
       <StepControl canGoBack={true} isValid={true} isLastPage={false} />
       <StepControl canGoBack={true} isValid={true} isLastPage={true} />
       <StepControl canGoBack={true} isValid={false} isLastPage={false} /> */}
-      <Plan plan={PLANS.arcade} timeSpan={TIME_SPANS.month} />
+      {/* <Plan plan={PLANS.arcade} timeSpan={TIME_SPANS.month} />
       <Plan plan={PLANS.arcade} timeSpan={TIME_SPANS.year} />
       <Plan plan={PLANS.advanced} timeSpan={TIME_SPANS.month} />
       <Plan plan={PLANS.advanced} timeSpan={TIME_SPANS.year} />
       <Plan plan={PLANS.pro} timeSpan={TIME_SPANS.month} />
-      <Plan plan={PLANS.pro} timeSpan={TIME_SPANS.year} />
+      <Plan plan={PLANS.pro} timeSpan={TIME_SPANS.year} /> */}
       {/* <ToggleSwitch isActive={false} onChange={null} />
       <MonthYearToggleSwitch />
       <Checkbox isActive={false} />
@@ -78,8 +78,8 @@ function DesignSystem() {
       <StepCard cardInfo={STEPS[0]}>
         <h1>step card content</h1>
       </StepCard>
-      <PersonalInfo />
-      <SelectPlan /> */}
+      <PersonalInfo />*/}
+      <SelectPlan />
     </div>
   );
 }

@@ -1,7 +1,7 @@
 export const PLANS = {
-  arcade: { name: "arcade", priceMonth: 9, priceYear: 90 },
-  advanced: { name: "advanced", priceMonth: 12, priceYear: 120 },
-  pro: { name: "pro", priceMonth: 15, priceYear: 150 },
+  arcade: { id: "1", name: "arcade", priceMonth: 9, priceYear: 90 },
+  advanced: { id: "2", name: "advanced", priceMonth: 12, priceYear: 120 },
+  pro: { id: "3", name: "pro", priceMonth: 15, priceYear: 150 },
 };
 
 export const TIME_SPANS = {
