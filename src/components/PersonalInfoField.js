@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import "./PersonalInfoField.css";
 
-function PersonalInfoField({ type, id, label, validator }) {
+function PersonalInfoField({ type, id, label, placeholder, validator }) {
   const [enteredValue, setEnteredValue] = useState("");
   const [enteredValueIsTouched, setEnteredValueIsTouched] = useState(false);
   const [enteredValueHasError, setEnteredValueHasError] = useState(false);
@@ -53,7 +53,7 @@ function PersonalInfoField({ type, id, label, validator }) {
         className={`input ${enteredValueHasError ? "input--error" : undefined}`}
         id={id}
         type={type}
-        placeholder="e.g. Stephen King"
+        placeholder={placeholder}
         onChange={changeHandler}
         onBlur={blurHandler}
       />

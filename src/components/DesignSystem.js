@@ -3,7 +3,14 @@ import ProgressIndicator from "./ProgressIndicator";
 import StepControl from "./StepControl";
 import Plan from "./Plan";
 
-import { PLANS, TIME_SPANS, ADD_ONS } from "../utils";
+import {
+  PLANS,
+  TIME_SPANS,
+  ADD_ONS,
+  validateName,
+  validateEmail,
+  validatePhone,
+} from "../utils";
 
 import "./DesignSystem.css";
 import ToggleSwitch from "./ToggleSwitch";
@@ -11,6 +18,7 @@ import MonthYearToggleSwitch from "./MonthYearToggleSwitch";
 import AddOn from "./AddOn";
 import Checkbox from "./Checkbox";
 import PersonalInfoField from "./PersonalInfoField";
+import PersonalInfo from "./PersonalInfo";
 
 const progressData = [
   { step: 1, title: "Your info", isActive: true },
@@ -20,32 +28,6 @@ const progressData = [
 ];
 
 function DesignSystem() {
-  const validateEmail = (email) => {
-    if (
-      !email.match(
-        /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-      )
-    ) {
-      return "Please enter a valid email";
-    }
-    return "";
-  };
-  const validatePhone = (phone) => {
-    if (
-      !phone.match(
-        /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im
-      )
-    ) {
-      return "Please enter a valid phone number";
-    }
-    return "";
-  };
-  const validateName = (name) => {
-    if (!name.match(/^[a-zA-Z ]+$/)) {
-      return "Please enter a valid name";
-    }
-    return "";
-  };
   return (
     <div className="design-system grid">
       {/* <ProgressIndicator data={progressData} />
@@ -73,14 +55,13 @@ function DesignSystem() {
         type="text"
         id="name"
         label="Name"
-        validator={(name) => {
-          if (name !== "fred") return "name must be fred";
-          return "";
-        }}
+        placeholder="e.g. Stephen King"
+        validator={validateName}
       />
       <PersonalInfoField
         type="email"
         id="email"
+        placeholder="stephenking@lorem.com"
         label="Email"
         validator={validateEmail}
       />
@@ -88,8 +69,10 @@ function DesignSystem() {
         type="tel"
         id="phone"
         label="Phone number"
+        placeholder="e.g. +1 234 567 890"
         validator={validatePhone}
       />
+      <PersonalInfo />
     </div>
   );
 }
