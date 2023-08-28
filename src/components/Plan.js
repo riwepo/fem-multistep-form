@@ -7,8 +7,6 @@ import { getIcon, getPrice } from "../utils";
 import "./Plan.css";
 
 function Plan({ plan, timeSpan }) {
-  const path = getIcon(plan);
-  console.log(path);
   return (
     <Card>
       <div className="plan flex">
