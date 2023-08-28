@@ -1,0 +1,17 @@
+.personal-info-field {
+  --gap: 0.5rem;
+  padding: 1rem;
+}
+
+.personal-info-field .input-info {
+  justify-content: space-between;
+}
+
+.personal-info-field .input {
+  padding: 1rem 2rem;
+  border: none;
+}
+
+.personal-info-field .input.input--error {
+  border: solid 2px hsl(var(--clr-strawberry-red));
+}

@@ -10,6 +10,7 @@ import ToggleSwitch from "./ToggleSwitch";
 import MonthYearToggleSwitch from "./MonthYearToggleSwitch";
 import AddOn from "./AddOn";
 import Checkbox from "./Checkbox";
+import PersonalInfoField from "./PersonalInfoField";
 
 const progressData = [
   { step: 1, title: "Your info", isActive: true },
@@ -21,7 +22,7 @@ const progressData = [
 function DesignSystem() {
   return (
     <div className="design-system grid">
-      <ProgressIndicator data={progressData} />
+      {/* <ProgressIndicator data={progressData} />
       <StepControl canGoBack={false} isValid={true} isLastPage={false} />
       <StepControl canGoBack={true} isValid={true} isLastPage={false} />
       <StepControl canGoBack={true} isValid={true} isLastPage={true} />
@@ -41,7 +42,14 @@ function DesignSystem() {
       <AddOn addOn={ADD_ONS.storage} timeSpan={TIME_SPANS.month} />
       <AddOn addOn={ADD_ONS.storage} timeSpan={TIME_SPANS.year} />
       <AddOn addOn={ADD_ONS.customizable} timeSpan={TIME_SPANS.month} />
-      <AddOn addOn={ADD_ONS.customizable} timeSpan={TIME_SPANS.year} />
+      <AddOn addOn={ADD_ONS.customizable} timeSpan={TIME_SPANS.year} /> */}
+      <PersonalInfoField
+        label="Name"
+        validator={(name) => {
+          if (name !== "fred") return "name must be fred";
+          return "";
+        }}
+      />
     </div>
   );
 }
