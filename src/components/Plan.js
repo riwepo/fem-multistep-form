@@ -8,7 +8,7 @@ import "./Plan.css";
 
 function Plan({ plan, timeSpan, isActive, onActivated }) {
   const clickHandler = (event) => {
-    onActivated && onActivated();
+    onActivated && onActivated(plan.id);
   };
   return (
     <Card className={`card-plan ${isActive ? "card-plan--active" : undefined}`}>

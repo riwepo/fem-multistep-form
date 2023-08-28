@@ -9,8 +9,8 @@ import "./SelectPlan.css";
 
 function SelectPlan() {
   const [activePlanId, setActivePlanId] = useState("1");
-  const activateHandler = () => {
-    console.log("activateHandler");
+  const activateHandler = (planId) => {
+    setActivePlanId(planId);
   };
   return (
     <StepCard cardInfo={STEPS[1]}>
