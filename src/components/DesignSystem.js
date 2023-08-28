@@ -34,8 +34,8 @@ function DesignSystem() {
       <Plan plan={PLANS.pro} timeSpan={TIME_SPANS.year} />
       <ToggleSwitch isActive={false} onChange={null} />
       <MonthYearToggleSwitch />
-      <Checkbox isActive={false} onChange={null} />
-      <Checkbox isActive={true} onChange={null} />
+      <Checkbox isActive={false} />
+      <Checkbox isActive={true} />
       <AddOn addOn={ADD_ONS.online} timeSpan={TIME_SPANS.month} />
       <AddOn addOn={ADD_ONS.online} timeSpan={TIME_SPANS.year} />
       <AddOn addOn={ADD_ONS.storage} timeSpan={TIME_SPANS.month} />

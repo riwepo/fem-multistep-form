@@ -4,11 +4,10 @@ import iconCheckmark from "../assets/images/icon-checkmark.svg";
 
 import "./Checkbox.css";
 
-function Checkbox({ isActive, onChange }) {
+function Checkbox({ isActive }) {
   return (
     <div
       className={`checkbox grid ${isActive ? "checkbox--active" : undefined}`}
-      onClick={onChange}
     >
       <img src={iconCheckmark} alt="checkmark" />
     </div>
