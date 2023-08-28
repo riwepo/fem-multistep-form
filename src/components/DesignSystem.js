@@ -37,14 +37,14 @@ function DesignSystem() {
       <StepControl canGoBack={false} isValid={true} isLastPage={false} />
       <StepControl canGoBack={true} isValid={true} isLastPage={false} />
       <StepControl canGoBack={true} isValid={true} isLastPage={true} />
-      <StepControl canGoBack={true} isValid={false} isLastPage={false} />
+      <StepControl canGoBack={true} isValid={false} isLastPage={false} /> */}
       <Plan plan={PLANS.arcade} timeSpan={TIME_SPANS.month} />
       <Plan plan={PLANS.arcade} timeSpan={TIME_SPANS.year} />
       <Plan plan={PLANS.advanced} timeSpan={TIME_SPANS.month} />
       <Plan plan={PLANS.advanced} timeSpan={TIME_SPANS.year} />
       <Plan plan={PLANS.pro} timeSpan={TIME_SPANS.month} />
       <Plan plan={PLANS.pro} timeSpan={TIME_SPANS.year} />
-      <ToggleSwitch isActive={false} onChange={null} />
+      {/* <ToggleSwitch isActive={false} onChange={null} />
       <MonthYearToggleSwitch />
       <Checkbox isActive={false} />
       <Checkbox isActive={true} />
@@ -53,7 +53,7 @@ function DesignSystem() {
       <AddOn addOn={ADD_ONS.storage} timeSpan={TIME_SPANS.month} />
       <AddOn addOn={ADD_ONS.storage} timeSpan={TIME_SPANS.year} />
       <AddOn addOn={ADD_ONS.customizable} timeSpan={TIME_SPANS.month} />
-      <AddOn addOn={ADD_ONS.customizable} timeSpan={TIME_SPANS.year} /> */}
+      <AddOn addOn={ADD_ONS.customizable} timeSpan={TIME_SPANS.year} />
       <PersonalInfoField
         type="text"
         id="name"
@@ -79,7 +79,7 @@ function DesignSystem() {
         <h1>step card content</h1>
       </StepCard>
       <PersonalInfo />
-      <SelectPlan />
+      <SelectPlan /> */}
     </div>
   );
 }

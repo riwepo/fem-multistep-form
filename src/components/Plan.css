@@ -1,7 +1,29 @@
+.card-plan {
+  background-color: transparent;
+  border: solid 1px hsl(var(--clr-light-gray));
+  margin: 2rem;
+}
+
+.card-plan:hover,
+.card-plan:focus {
+  border: solid 1px hsl(var(--clr-purplish-blue));
+  cursor: pointer;
+}
+
+.card-plan.card-plan--active {
+  background-color: hsl(var(--clr-light-blue));
+  border: solid 1px hsl(var(--clr-purplish-blue));
+}
+
 .plan img {
   height: 4rem;
   aspect-ratio: 1;
 }
+
+.plan {
+  padding: 2rem;
+}
+
 .plan .bonus {
   display: none;
 }
