@@ -9,11 +9,35 @@ export const TIME_SPANS = {
   year: { code: "YEAR", display: "yr", hasBonus: true },
 };
 
-export function getPrice(plan, timeSpan) {
+export const ADD_ONS = {
+  online: {
+    code: "ONLINE",
+    name: "Online service",
+    description: "Access to multiplayer games",
+    priceMonth: 1,
+    priceYear: 10,
+  },
+  storage: {
+    code: "STORAGE",
+    name: "Larger storage",
+    description: "Extra 1TB of cloud save",
+    priceMonth: 1,
+    priceYear: 10,
+  },
+  customizable: {
+    code: "CUSTOMIZABLE",
+    name: "Customizable profile",
+    description: "Custom theme on your profile",
+    priceMonth: 1,
+    priceYear: 10,
+  },
+};
+
+export function getPrice(pricedItem, timeSpan) {
   if (timeSpan.code === "YEAR") {
-    return plan.priceYear;
+    return pricedItem.priceYear;
   } else if (timeSpan.code === "MONTH") {
-    return plan.priceMonth;
+    return pricedItem.priceMonth;
   } else throw new Error(`unexpected timespan ${timeSpan}`);
 }
 

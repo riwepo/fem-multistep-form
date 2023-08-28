@@ -3,11 +3,12 @@ import ProgressIndicator from "./ProgressIndicator";
 import StepControl from "./StepControl";
 import Plan from "./Plan";
 
-import { PLANS, TIME_SPANS } from "../utils";
+import { PLANS, TIME_SPANS, ADD_ONS } from "../utils";
 
 import "./DesignSystem.css";
 import ToggleSwitch from "./ToggleSwitch";
 import MonthYearToggleSwitch from "./MonthYearToggleSwitch";
+import AddOn from "./AddOn";
 
 const progressData = [
   { step: 1, title: "Your info", isActive: true },
@@ -30,8 +31,14 @@ function DesignSystem() {
       <Plan plan={PLANS.advanced} timeSpan={TIME_SPANS.year} />
       <Plan plan={PLANS.pro} timeSpan={TIME_SPANS.month} />
       <Plan plan={PLANS.pro} timeSpan={TIME_SPANS.year} />
-      <ToggleSwitch onChange={null} />
-      <MonthYearToggleSwitch onChange={null} />
+      <ToggleSwitch isActive={false} onChange={null} />
+      <MonthYearToggleSwitch />
+      <AddOn addOn={ADD_ONS.online} timeSpan={TIME_SPANS.month} />
+      <AddOn addOn={ADD_ONS.online} timeSpan={TIME_SPANS.year} />
+      <AddOn addOn={ADD_ONS.storage} timeSpan={TIME_SPANS.month} />
+      <AddOn addOn={ADD_ONS.storage} timeSpan={TIME_SPANS.year} />
+      <AddOn addOn={ADD_ONS.customizable} timeSpan={TIME_SPANS.month} />
+      <AddOn addOn={ADD_ONS.customizable} timeSpan={TIME_SPANS.year} />
     </div>
   );
 }
