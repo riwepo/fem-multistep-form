@@ -8,7 +8,7 @@ import "./Plan.css";
 
 function Plan({ plan, timeSpan }) {
   return (
-    <Card>
+    <Card className={undefined}>
       <div className="plan flex">
         <img src={getIcon(plan)} alt="plan icon" />
         <div>
