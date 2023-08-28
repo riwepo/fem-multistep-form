@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import "./PersonalInfoField.css";
 
-function PersonalInfoField({ label, validator }) {
+function PersonalInfoField({ type, id, label, validator }) {
   const [enteredValue, setEnteredValue] = useState("");
   const [enteredValueIsTouched, setEnteredValueIsTouched] = useState(false);
   const [enteredValueHasError, setEnteredValueHasError] = useState(false);
@@ -11,8 +11,10 @@ function PersonalInfoField({ label, validator }) {
 
   const changeHandler = (event) => {
     setEnteredValueIsTouched(true);
+  };
+
+  const blurHandler = (event) => {
     const localValue = event.target.value.trim();
-    console.log(localValue);
     setEnteredValue(localValue);
     if (localValue === "") {
       setErrorMessage("This field is required.");
@@ -36,7 +38,7 @@ function PersonalInfoField({ label, validator }) {
   return (
     <div className="personal-info-field grid">
       <div className="input-info flex">
-        <label className="fs-300 text-marine-blue" htmlFor="name">
+        <label className="fs-300 text-marine-blue" htmlFor={id}>
           {label}
         </label>
         <p
@@ -49,10 +51,11 @@ function PersonalInfoField({ label, validator }) {
       </div>
       <input
         className={`input ${enteredValueHasError ? "input--error" : undefined}`}
-        id="name"
-        type="text"
+        id={id}
+        type={type}
         placeholder="e.g. Stephen King"
         onChange={changeHandler}
+        onBlur={blurHandler}
       />
     </div>
   );

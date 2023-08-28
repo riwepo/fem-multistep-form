@@ -20,6 +20,32 @@ const progressData = [
 ];
 
 function DesignSystem() {
+  const validateEmail = (email) => {
+    if (
+      !email.match(
+        /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      )
+    ) {
+      return "Please enter a valid email";
+    }
+    return "";
+  };
+  const validatePhone = (phone) => {
+    if (
+      !phone.match(
+        /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im
+      )
+    ) {
+      return "Please enter a valid phone number";
+    }
+    return "";
+  };
+  const validateName = (name) => {
+    if (!name.match(/^[a-zA-Z ]+$/)) {
+      return "Please enter a valid name";
+    }
+    return "";
+  };
   return (
     <div className="design-system grid">
       {/* <ProgressIndicator data={progressData} />
@@ -44,11 +70,25 @@ function DesignSystem() {
       <AddOn addOn={ADD_ONS.customizable} timeSpan={TIME_SPANS.month} />
       <AddOn addOn={ADD_ONS.customizable} timeSpan={TIME_SPANS.year} /> */}
       <PersonalInfoField
+        type="text"
+        id="name"
         label="Name"
         validator={(name) => {
           if (name !== "fred") return "name must be fred";
           return "";
         }}
+      />
+      <PersonalInfoField
+        type="email"
+        id="email"
+        label="Email"
+        validator={validateEmail}
+      />
+      <PersonalInfoField
+        type="tel"
+        id="phone"
+        label="Phone number"
+        validator={validatePhone}
       />
     </div>
   );
