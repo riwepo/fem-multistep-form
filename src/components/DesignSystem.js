@@ -2,11 +2,13 @@ import React from "react";
 import ProgressIndicator from "./ProgressIndicator";
 import StepControl from "./StepControl";
 import Plan from "./Plan";
+import SelectPlan from "./SelectPlan";
 
 import {
   PLANS,
   TIME_SPANS,
   ADD_ONS,
+  STEPS,
   validateName,
   validateEmail,
   validatePhone,
@@ -19,6 +21,7 @@ import AddOn from "./AddOn";
 import Checkbox from "./Checkbox";
 import PersonalInfoField from "./PersonalInfoField";
 import PersonalInfo from "./PersonalInfo";
+import StepCard from "./StepCard";
 
 const progressData = [
   { step: 1, title: "Your info", isActive: true },
@@ -72,7 +75,11 @@ function DesignSystem() {
         placeholder="e.g. +1 234 567 890"
         validator={validatePhone}
       />
+      <StepCard cardInfo={STEPS[0]}>
+        <h1>step card content</h1>
+      </StepCard>
       <PersonalInfo />
+      <SelectPlan />
     </div>
   );
 }

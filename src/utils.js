@@ -33,6 +33,24 @@ export const ADD_ONS = {
   },
 };
 
+export const STEPS = [
+  {
+    id: 1,
+    title: "Personal info",
+    description: "Please provide your name, email address and phone number.",
+  },
+  {
+    id: 2,
+    title: "Select your plan",
+    description: "You have the option of monthly or yearly billing.",
+  },
+  {
+    id: 3,
+    title: "Pick add-ons",
+    description: "Add-ons help enhance your gaming experience.",
+  },
+];
+
 export function getPrice(pricedItem, timeSpan) {
   if (timeSpan.code === "YEAR") {
     return pricedItem.priceYear;
