@@ -7,6 +7,7 @@ import { PLANS, TIME_SPANS } from "../utils";
 
 import "./DesignSystem.css";
 import ToggleSwitch from "./ToggleSwitch";
+import MonthYearToggleSwitch from "./MonthYearToggleSwitch";
 
 const progressData = [
   { step: 1, title: "Your info", isActive: true },
@@ -30,6 +31,7 @@ function DesignSystem() {
       <Plan plan={PLANS.pro} timeSpan={TIME_SPANS.month} />
       <Plan plan={PLANS.pro} timeSpan={TIME_SPANS.year} />
       <ToggleSwitch onChange={null} />
+      <MonthYearToggleSwitch onChange={null} />
     </div>
   );
 }

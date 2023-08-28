@@ -1,12 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 
 import "./ToggleSwitch.css";
 
-function ToggleSwitch({ onChange }) {
-  const [isActive, setIsActive] = useState(false);
+function ToggleSwitch({ isActive, onChange }) {
   const clickHandler = () => {
-    setIsActive((current) => !current);
-    onChange && onChange(isActive);
+    onChange && onChange(!isActive);
   };
   return (
     <div className="toggle-switch" onClick={clickHandler}>
