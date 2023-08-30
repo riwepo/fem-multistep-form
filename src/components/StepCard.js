@@ -4,9 +4,9 @@ import Card from "./Card";
 
 import "./StepCard.css";
 
-function StepCard({ children, stepInfo }) {
+function StepCard({ className, children, stepInfo }) {
   return (
-    <Card className="card-step">
+    <Card className={`card-step ${className}`}>
       <div className="step-card grid">
         <h1 className="fs-600 text-marine-blue">{stepInfo.title}</h1>
         <p>{stepInfo.description}</p>
