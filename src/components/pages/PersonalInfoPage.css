@@ -1,0 +1,21 @@
+.personal-info-page {
+  height: 100vh;
+  width: 100vw;
+  max-width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.personal-info-page .bg-image {
+  height: 20%;
+  width: 100%;
+  background-image: url("../../assets/images/bg-sidebar-mobile.svg");
+}
+
+.personal-info-page .card-step-personal-info {
+  width: 95%;
+}
+.personal-info-page .step-control {
+  width: 100%;
+  background-color: hsl(var(--clr-white));
+}
