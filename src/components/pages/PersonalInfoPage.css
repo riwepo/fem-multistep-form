@@ -1,15 +1,16 @@
 .personal-info-page {
-  height: 100vh;
+  /* position: relative; */
+  /* height: auto; */
+  /* height: 100vh; */
   width: 100vw;
   max-width: 100%;
   flex-direction: column;
   align-items: center;
-}
-
-.personal-info-page .bg-image {
-  height: 20%;
-  width: 100%;
   background-image: url("../../assets/images/bg-sidebar-mobile.svg");
+  background-repeat: no-repeat;
+  background-position: top;
+  /* background-size: 100% 20%; */
+  background-size: contain;
 }
 
 .personal-info-page .card-step-personal-info {
