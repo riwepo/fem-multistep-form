@@ -199,6 +199,10 @@
   line-height: 1.1;
 }
 
+.fw-bold {
+  font-weight: bold;
+}
+
 .flex {
   display: flex;
   gap: var(--gap, 1rem);
