@@ -8,7 +8,7 @@
 }
 
 .personal-info-field .input {
-  padding: 1rem 2rem;
+  padding: 0.25em 0.5em;
   border-radius: 0.5rem;
   border: solid 1px hsl(var(--clr-light-gray));
 }
