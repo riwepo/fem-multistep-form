@@ -8,6 +8,7 @@ function Checkbox({ isActive }) {
   return (
     <div
       className={`checkbox grid ${isActive ? "checkbox--active" : undefined}`}
+      aria-selected={isActive}
     >
       <img src={iconCheckmark} alt="checkmark" />
     </div>

@@ -7,11 +7,11 @@ function ToggleSwitch({ isActive, onChange }) {
     onChange && onChange(!isActive);
   };
   return (
-    <div className="toggle-switch" onClick={clickHandler}>
+    <button className="toggle-switch" onClick={clickHandler}>
       <div
         className={`indicator ${isActive ? "indicator--active" : undefined}`}
       ></div>
-    </div>
+    </button>
   );
 }
 

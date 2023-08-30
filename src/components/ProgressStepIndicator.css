@@ -11,7 +11,7 @@
   border-radius: 50%;
 }
 
-.progress-step-indicator .indicator.progress-step-indicator--active {
+.progress-step-indicator .indicator.indicator--active {
   background-color: hsl(var(--clr-light-blue));
   color: hsl(var(--clr-marine-blue));
   border: none;

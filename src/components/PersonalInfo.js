@@ -3,13 +3,21 @@ import React from "react";
 import StepCard from "./StepCard";
 import PersonalInfoField from "./PersonalInfoField";
 
-import { STEPS, validateName, validateEmail, validatePhone } from "../utils";
+import {
+  validateName,
+  validateEmail,
+  validatePhone,
+} from "../utils/validators";
+
+import { getStepByCode } from "../utils/steps";
 
 import "./PersonalInfo.css";
 
+const personalInfoStep = getStepByCode("PERSONAL_INFO");
+
 function PersonalInfo() {
   return (
-    <StepCard cardInfo={STEPS[0]}>
+    <StepCard stepInfo={personalInfoStep}>
       <PersonalInfoField
         type="text"
         id="name"
@@ -20,7 +28,7 @@ function PersonalInfo() {
       <PersonalInfoField
         type="email"
         id="email"
-        placeholder="stephenking@lorem.com"
+        placeholder="e.g. stephenking@lorem.com"
         label="Email"
         validator={validateEmail}
       />

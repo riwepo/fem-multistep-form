@@ -2,35 +2,48 @@ import React, { useState } from "react";
 
 import StepCard from "./StepCard";
 import Plan from "./Plan";
+import MonthYearToggleSwitch from "./MonthYearToggleSwitch";
 
-import { PLANS, TIME_SPANS, STEPS } from "../utils";
+import { PLANS } from "../utils/plans";
+import { getStepByCode } from "../utils/steps";
+import { TIME_SPANS, getTimespanByCode } from "../utils/timespans";
 
 import "./SelectPlan.css";
 
 function SelectPlan() {
-  const [activePlanId, setActivePlanId] = useState("1");
-  const activateHandler = (planId) => {
-    setActivePlanId(planId);
+  const [activePlanCode, setActivePlanCode] = useState(PLANS[0].code);
+  const activateHandler = (planCode) => {
+    console.log(planCode);
+    setActivePlanCode(planCode);
   };
+  const [activeTimeSpanCode, setActiveTimespanCode] = useState(
+    TIME_SPANS[0].code
+  );
+  const timespanChangeHandler = (isToggleActive) => {
+    const newTimeSpanCode = isToggleActive ? "MONTH" : "YEAR";
+    setActiveTimespanCode(newTimeSpanCode);
+  };
+  const activeTimespan = getTimespanByCode(activeTimeSpanCode);
+
+  const selectPlanStep = getStepByCode("SELECT_PLAN");
+
   return (
-    <StepCard cardInfo={STEPS[1]}>
-      <Plan
-        plan={PLANS.arcade}
-        timeSpan={TIME_SPANS.month}
-        isActive={activePlanId === PLANS.arcade.id}
-        onActivated={activateHandler}
-      />
-      <Plan
-        plan={PLANS.advanced}
-        timeSpan={TIME_SPANS.month}
-        isActive={activePlanId === PLANS.advanced.id}
-        onActivated={activateHandler}
-      />
-      <Plan
-        plan={PLANS.pro}
-        timeSpan={TIME_SPANS.month}
-        isActive={activePlanId === PLANS.pro.id}
-        onActivated={activateHandler}
+    <StepCard stepInfo={selectPlanStep}>
+      {PLANS.map((plan) => {
+        return (
+          <Plan
+            key={plan.id}
+            plan={plan}
+            timeSpan={activeTimespan}
+            isActive={activePlanCode === plan.code}
+            onActivated={activateHandler}
+          />
+        );
+      })}
+
+      <MonthYearToggleSwitch
+        activeTimespan={activeTimespan}
+        onTimespanChange={timespanChangeHandler}
       />
     </StepCard>
   );

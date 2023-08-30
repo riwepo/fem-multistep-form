@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Card from "./Card";
 import Checkbox from "./Checkbox";
 
-import { getPrice } from "../utils";
+import { getPrice } from "../utils/utils";
 
 import "./AddOn.css";
 

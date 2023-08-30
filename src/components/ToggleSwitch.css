@@ -7,6 +7,7 @@
   border-radius: 1.5rem;
   background-color: hsl(var(--clr-marine-blue));
   padding: 0.5rem;
+  border: none;
 }
 
 .toggle-switch .indicator {
@@ -19,4 +20,9 @@
 
 .toggle-switch .indicator.indicator--active {
   transform: translateX(150%);
+}
+
+.toggle-switch:hover,
+.toggle-switch:focus {
+  cursor: pointer;
 }

@@ -1,31 +1,37 @@
-import React, { useState } from "react";
+import React from "react";
 
 import Card from "./Card";
 import ToggleSwitch from "./ToggleSwitch";
 
+import { getTimespanByCode } from "../utils/timespans";
+
 import "./MonthYearToggleSwitch.css";
 
-function MonthYearToggleSwitch() {
-  const [isActive, setIsActive] = useState(false);
+const monthlyTimespan = getTimespanByCode("MONTH");
+const yearlyTimespan = getTimespanByCode("YEAR");
+
+function MonthYearToggleSwitch({ activeTimespan, onTimespanChange }) {
+  const isMonthSelected = activeTimespan === monthlyTimespan;
+  const isYearSelected = activeTimespan === yearlyTimespan;
   return (
-    <Card>
-      <div className="month-year-toggle-switch flex">
-        <p
-          className={`month-title ${
-            !isActive ? "month-title--active" : undefined
-          }`}
-        >
-          Monthly
-        </p>
-        <ToggleSwitch isActive={isActive} onChange={setIsActive} />
-        <p
-          className={`year-title ${
-            isActive ? "year-title--active" : undefined
-          }`}
-        >
-          Yearly
-        </p>
-      </div>
+    <Card className="card-month-year-toggle-switch flex">
+      <p
+        className={`month-title ${
+          isMonthSelected ? "month-title--active" : undefined
+        }`}
+        aria-selected={isMonthSelected}
+      >
+        Monthly
+      </p>
+      <ToggleSwitch isActive={isMonthSelected} onChange={onTimespanChange} />
+      <p
+        className={`year-title ${
+          isYearSelected ? "year-title--active" : undefined
+        }`}
+        aria-selected={isYearSelected}
+      >
+        Yearly
+      </p>
     </Card>
   );
 }
