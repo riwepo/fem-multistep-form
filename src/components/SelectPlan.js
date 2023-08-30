@@ -28,7 +28,7 @@ function SelectPlan() {
   const selectPlanStep = getStepByCode("SELECT_PLAN");
 
   return (
-    <StepCard stepInfo={selectPlanStep}>
+    <StepCard className="card-step-select-plan" stepInfo={selectPlanStep}>
       {PLANS.map((plan) => {
         return (
           <Plan
