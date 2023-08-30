@@ -4,16 +4,6 @@ import StepControl from "./StepControl";
 import Plan from "./Plan";
 import SelectPlan from "./SelectPlan";
 
-// import {
-//   PLANS,
-//   TIME_SPANS,
-//   ADD_ONS,
-//   STEPS,
-//   validateName,
-//   validateEmail,
-//   validatePhone,
-// } from "../utils/utils";
-
 import "./DesignSystem.css";
 import ToggleSwitch from "./ToggleSwitch";
 import MonthYearToggleSwitch from "./MonthYearToggleSwitch";
@@ -22,20 +12,15 @@ import Checkbox from "./Checkbox";
 import PersonalInfoField from "./PersonalInfoField";
 import PersonalInfo from "./PersonalInfo";
 import StepCard from "./StepCard";
+import { getPlanByCode } from "../utils/plans";
 import { getAddOnByCode } from "../utils/addOns";
 import { getTimespanByCode } from "../utils/timespans";
-import { getPlanByCode } from "../utils/plans";
-
-const progressData = [
-  { step: 1, title: "Your info", isActive: true },
-  { step: 2, title: "Select plan", isActive: false },
-  { step: 3, title: "Add-ons", isActive: false },
-  { step: 4, title: "Summary", isActive: false },
-];
-
-const onlineAddOn = getAddOnByCode("ONLINE");
-const monthlyTimespan = getTimespanByCode("MONTH");
-const arcadePlan = getPlanByCode("ARCADE");
+import { STEPS } from "../utils/steps";
+import {
+  validateName,
+  validateEmail,
+  validatePhone,
+} from "../utils/validators";
 
 function DesignSystem() {
   const [isToggleActive, setIsToggleActive] = useState(false);
@@ -43,65 +28,99 @@ function DesignSystem() {
 
   return (
     <div className="design-system grid">
-      {/* <ProgressIndicator data={progressData} />
-      <StepControl canGoBack={false} isValid={true} isLastPage={false} />
-      <StepControl canGoBack={true} isValid={true} isLastPage={false} />
-      <StepControl canGoBack={true} isValid={true} isLastPage={true} />
-      <StepControl canGoBack={true} isValid={false} isLastPage={false} /> */}
-      {/* <Plan plan={PLANS.arcade} timeSpan={TIME_SPANS.month} />
-      <Plan plan={PLANS.arcade} timeSpan={TIME_SPANS.year} />
-      <Plan plan={PLANS.advanced} timeSpan={TIME_SPANS.month} />
-      <Plan plan={PLANS.advanced} timeSpan={TIME_SPANS.year} />
-      <Plan plan={PLANS.pro} timeSpan={TIME_SPANS.month} />
-      <Plan plan={PLANS.pro} timeSpan={TIME_SPANS.year} /> */}
-
-      {/* <ToggleSwitch
-        isActive={isToggleActive}
-        onChange={(active) => {
-          setIsToggleActive(active);
-        }}
-      /> */}
-      {/*<MonthYearToggleSwitch />
-      <Checkbox isActive={false} />
-    <Checkbox isActive={true} />*/}
-      {/*<AddOn addOn={onlineAddOn} timeSpan={monthlyTimespan} />
-       <AddOn addOn={ADD_ONS.online} timeSpan={TIME_SPANS.year} />
-      <AddOn addOn={ADD_ONS.storage} timeSpan={TIME_SPANS.month} />
-      <AddOn addOn={ADD_ONS.storage} timeSpan={TIME_SPANS.year} />
-      <AddOn addOn={ADD_ONS.customizable} timeSpan={TIME_SPANS.month} />
-      <AddOn addOn={ADD_ONS.customizable} timeSpan={TIME_SPANS.year} /> */}
-      {/* <PersonalInfoField
-        type="text"
-        id="name"
-        label="Name"
-        placeholder="e.g. Stephen King"
-        validator={validateName}
-      />
-      <PersonalInfoField
-        type="email"
-        id="email"
-        placeholder="stephenking@lorem.com"
-        label="Email"
-        validator={validateEmail}
-      />
-      <PersonalInfoField
-        type="tel"
-        id="phone"
-        label="Phone number"
-        placeholder="e.g. +1 234 567 890"
-        validator={validatePhone}
-      /> */}
-      {/* <StepCard cardInfo={STEPS[0]}>
-        <h1>step card content</h1>
-      </StepCard> */}
-      {/* <PersonalInfo /> */}
-      {/* <Plan
-        plan={arcadePlan}
-        timeSpan={monthlyTimespan}
-        isActive={isPlanActive}
-        onActivated={() => setIsPlanActive(true)}
-      /> */}
-      <SelectPlan />
+      <div>
+        <ProgressIndicator steps={STEPS} activeStepCode={STEPS[0].code} />
+      </div>
+      <div>
+        <StepControl canGoBack={false} isValid={true} isLastPage={false} />
+        <StepControl canGoBack={true} isValid={true} isLastPage={false} />
+        <StepControl canGoBack={true} isValid={true} isLastPage={true} />
+        <StepControl canGoBack={true} isValid={false} isLastPage={false} />
+      </div>
+      <div>
+        <Plan
+          plan={getPlanByCode("ARCADE")}
+          timeSpan={getTimespanByCode("MONTH")}
+          isActive={true}
+          onActivated={null}
+        />
+        <Plan
+          plan={getPlanByCode("ADVANCED")}
+          timeSpan={getTimespanByCode("YEAR")}
+          isActive={false}
+          onActivated={null}
+        />
+      </div>
+      <div>
+        <ToggleSwitch
+          isActive={isToggleActive}
+          onChange={(active) => {
+            setIsToggleActive(active);
+          }}
+        />
+      </div>
+      <div>
+        <MonthYearToggleSwitch
+          activeTimespan={getTimespanByCode("MONTH")}
+          onTimespanChange={null}
+        />
+      </div>
+      <div>
+        <Checkbox isActive={false} />
+        <Checkbox isActive={true} />
+      </div>
+      <div>
+        <AddOn
+          addOn={getAddOnByCode("ONLINE")}
+          timeSpan={getTimespanByCode("MONTH")}
+        />
+        <AddOn
+          addOn={getAddOnByCode("STORAGE")}
+          timeSpan={getTimespanByCode("YEAR")}
+        />
+      </div>
+      <div>
+        <PersonalInfoField
+          type="text"
+          id="name"
+          label="Name"
+          placeholder="e.g. Stephen King"
+          validator={validateName}
+        />
+        <PersonalInfoField
+          type="email"
+          id="email"
+          placeholder="stephenking@lorem.com"
+          label="Email"
+          validator={validateEmail}
+        />
+        <PersonalInfoField
+          type="tel"
+          id="phone"
+          label="Phone number"
+          placeholder="e.g. +1 234 567 890"
+          validator={validatePhone}
+        />
+      </div>
+      <div>
+        <StepCard stepInfo={STEPS[0]}>
+          <h1>step card content</h1>
+        </StepCard>
+      </div>
+      <div>
+        <PersonalInfo />
+      </div>
+      <div>
+        <Plan
+          plan={getPlanByCode("ARCADE")}
+          timeSpan={getTimespanByCode("MONTH")}
+          isActive={isPlanActive}
+          onActivated={() => setIsPlanActive(true)}
+        />
+      </div>
+      <div>
+        <SelectPlan />
+      </div>
     </div>
   );
 }
