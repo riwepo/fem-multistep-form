@@ -1,6 +1,6 @@
 @import "./reset.css";
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap");
-/* @import "./debug-borders.css"; */
+@import "./debug-borders.css";
 
 /*********************/
 /* custom properties */
@@ -106,7 +106,6 @@
 
 .bg-light-blue {
   background-color: hsl(var(--clr-light-blue));
-  --clr-marine-blue: hsl(243, 100%, 70%);
 }
 .bg-light-gray {
   background-color: hsl(var(--clr-light-gray));
