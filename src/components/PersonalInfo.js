@@ -17,7 +17,7 @@ const personalInfoStep = getStepByCode("PERSONAL_INFO");
 
 function PersonalInfo() {
   return (
-    <StepCard stepInfo={personalInfoStep}>
+    <StepCard className="card-step-personal-info" stepInfo={personalInfoStep}>
       <PersonalInfoField
         type="text"
         id="name"
