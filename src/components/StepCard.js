@@ -8,7 +8,7 @@ function StepCard({ className, children, stepInfo }) {
   return (
     <Card className={`card-step ${className}`}>
       <div className="step-card grid">
-        <h1 className="fs-600 text-marine-blue">{stepInfo.title}</h1>
+        <h1 className="fs-700 fw-bold text-marine-blue">{stepInfo.title}</h1>
         <p>{stepInfo.description}</p>
         {children}
       </div>
