@@ -5,7 +5,13 @@ import StepControl from "./StepControl";
 
 import { StepContext } from "../context/step-context";
 
-import { STEPS } from "../utils/steps";
+import {
+  STEPS,
+  hasPrevStep,
+  getPrevStep,
+  hasNextStep,
+  getNextStep,
+} from "../utils/steps";
 
 import "./PageContainer.css";
 import PersonalInfo from "./PersonalInfo";
@@ -16,12 +22,21 @@ function PageContainer() {
   const stepContext = useContext(StepContext);
   const isStepValid = stepContext.getIsValid(activeStepCode);
 
+  const isFirstStep = !hasPrevStep(activeStepCode);
+  const isLastStep = !hasNextStep(activeStepCode);
+
   const backClickHandler = () => {
-    console.log("back clicked");
+    if (hasPrevStep(activeStepCode)) {
+      const prevStep = getPrevStep(activeStepCode);
+      setActiveStepCode(prevStep.code);
+    }
   };
 
   const fwdClickHandler = () => {
-    console.log("fwd clicked");
+    if (hasNextStep(activeStepCode)) {
+      const nextStep = getNextStep(activeStepCode);
+      setActiveStepCode(nextStep.code);
+    }
   };
 
   return (
@@ -32,9 +47,9 @@ function PageContainer() {
       {activeStepCode === "PERSONAL_INFO" && <PersonalInfo />}
       {activeStepCode === "SELECT_PLAN" && <SelectPlan />}
       <StepControl
-        canGoBack={false}
+        canGoBack={!isFirstStep}
         isValid={isStepValid}
-        isLastPage={false}
+        isLastStep={isLastStep}
         onBackClicked={backClickHandler}
         onFwdClicked={fwdClickHandler}
       />
