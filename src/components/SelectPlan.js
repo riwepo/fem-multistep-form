@@ -10,7 +10,7 @@ import { TIME_SPANS, getTimespanByCode } from "../utils/timespans";
 
 import "./SelectPlan.css";
 
-function SelectPlan() {
+function SelectPlan({ onValidChange }) {
   const [activePlanCode, setActivePlanCode] = useState(PLANS[0].code);
   const activateHandler = (planCode) => {
     console.log(planCode);
