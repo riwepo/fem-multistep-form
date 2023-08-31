@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
 import StepCard from "./StepCard";
 import PersonalInfoField from "./PersonalInfoField";
@@ -9,22 +9,29 @@ import {
   validatePhone,
 } from "../utils/validators";
 
+import { StepContext } from "../context/step-context";
+
 import { getStepByCode } from "../utils/steps";
 
 import "./PersonalInfo.css";
 
 const personalInfoStep = getStepByCode("PERSONAL_INFO");
 
-function PersonalInfo({ onValidChange }) {
+function PersonalInfo() {
   const [validState, setValidState] = useState({
     name: false,
     email: false,
     phone: false,
   });
+  const stepContext = useContext(StepContext);
+
   const validChangeHandler = (id, isValid) => {
     const newValidState = { ...validState, [id]: isValid };
+    const allFieldsValid = Object.values(newValidState).every(
+      (item) => item === true
+    );
     setValidState(newValidState);
-    onValidChange(newValidState);
+    stepContext.setIsValid("PERSONAL_INFO", allFieldsValid);
   };
   return (
     <StepCard className="personal-info" stepInfo={personalInfoStep}>

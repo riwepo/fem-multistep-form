@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 import StepCard from "./StepCard";
 import Plan from "./Plan";
 import MonthYearToggleSwitch from "./MonthYearToggleSwitch";
+
+import { StepContext } from "../context/step-context";
 
 import { PLANS } from "../utils/plans";
 import { getStepByCode } from "../utils/steps";
@@ -10,11 +12,13 @@ import { TIME_SPANS, getTimespanByCode } from "../utils/timespans";
 
 import "./SelectPlan.css";
 
-function SelectPlan({ onValidChange }) {
-  const [activePlanCode, setActivePlanCode] = useState(PLANS[0].code);
+function SelectPlan() {
+  const [activePlanCode, setActivePlanCode] = useState("");
+  const stepContext = useContext(StepContext);
+
   const activateHandler = (planCode) => {
-    console.log(planCode);
     setActivePlanCode(planCode);
+    stepContext.setIsValid("SELECT_PLAN", true);
   };
   const [activeTimeSpanCode, setActiveTimespanCode] = useState(
     TIME_SPANS[0].code
