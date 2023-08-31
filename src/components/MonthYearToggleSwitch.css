@@ -1,20 +1,20 @@
-.card-month-year-toggle-switch {
+.month-year-toggle-switch {
   background-color: hsl(var(--clr-light-blue));
   padding: 1rem 4rem;
 }
 
-.card-month-year-toggle-switch .month-title {
+.month-year-toggle-switch .month-title {
   color: hsl(var(--clr-cool-gray));
 }
 
-.card-month-year-toggle-switch .month-title--active {
+.month-year-toggle-switch .month-title--active {
   color: hsl(var(--clr-marine-blue));
 }
 
-.card-month-year-toggle-switch .year-title {
+.month-year-toggle-switch .year-title {
   color: hsl(var(--clr-cool-gray));
 }
 
-.card-month-year-toggle-switch .year-title--active {
+.month-year-toggle-switch .year-title--active {
   color: hsl(var(--clr-marine-blue));
 }

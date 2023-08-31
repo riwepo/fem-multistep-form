@@ -96,9 +96,9 @@ test("plan not active", () => {
       onActivated={null}
     />
   );
-  const cardElement = container.querySelector(".card-plan"); // eslint-disable-line
+  const cardElement = container.querySelector(".plan"); // eslint-disable-line
   expect(cardElement).toBeInTheDocument();
-  expect(cardElement).not.toHaveClass("card-plan--active");
+  expect(cardElement).not.toHaveClass("plan--active");
 });
 
 test("plan active", () => {
@@ -112,9 +112,9 @@ test("plan active", () => {
       onActivated={null}
     />
   );
-  const cardElement = container.querySelector(".card-plan"); // eslint-disable-line
+  const cardElement = container.querySelector(".plan"); // eslint-disable-line
   expect(cardElement).toBeInTheDocument();
-  expect(cardElement).toHaveClass("card-plan--active");
+  expect(cardElement).toHaveClass("plan--active");
 });
 
 test("onActivate called on click", () => {

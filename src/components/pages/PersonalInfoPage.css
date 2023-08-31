@@ -17,7 +17,7 @@
   grid-area: progress;
 }
 
-.personal-info-page .card-step-personal-info {
+.personal-info-page .personal-info {
   grid-area: info;
   margin-inline: 1rem;
 }
@@ -54,7 +54,7 @@
     height: 100%;
   }
 
-  .personal-info-page .card-step-personal-info {
+  .personal-info-page .personal-info {
     grid-area: info;
   }
 

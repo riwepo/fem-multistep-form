@@ -1,16 +1,16 @@
-.card-plan {
+.plan {
   background-color: transparent;
   border: solid 1px hsl(var(--clr-light-gray));
   margin: 2rem;
 }
 
-.card-plan:hover,
-.card-plan:focus {
+.plan:hover,
+.plan:focus {
   border: solid 1px hsl(var(--clr-purplish-blue));
   cursor: pointer;
 }
 
-.card-plan.card-plan--active {
+.plan.plan--active {
   background-color: hsl(var(--clr-light-blue));
   border: solid 1px hsl(var(--clr-purplish-blue));
 }

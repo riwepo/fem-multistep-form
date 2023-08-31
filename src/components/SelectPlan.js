@@ -28,7 +28,7 @@ function SelectPlan({ onValidChange }) {
   const selectPlanStep = getStepByCode("SELECT_PLAN");
 
   return (
-    <StepCard className="card-step-select-plan" stepInfo={selectPlanStep}>
+    <StepCard className="select-plan" stepInfo={selectPlanStep}>
       {PLANS.map((plan) => {
         return (
           <Plan

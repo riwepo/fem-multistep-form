@@ -22,11 +22,11 @@ test("toggle switch rendered", () => {
 
 test("initial active plan is first plan", () => {
   const { container } = render(<SelectPlan />);
-  const cardPlanDivs = container.querySelectorAll(".card-plan"); // eslint-disable-line
-  expect(cardPlanDivs[0]).toHaveClass("card-plan--active");
+  const cardPlanDivs = container.querySelectorAll(".plan"); // eslint-disable-line
+  expect(cardPlanDivs[0]).toHaveClass("plan--active");
   const cardPlanDivsArray = [...cardPlanDivs];
   const activeDivCount = cardPlanDivsArray.filter((div) =>
-    div.classList.contains("card-plan--active")
+    div.classList.contains("plan--active")
   ).length;
   expect(activeDivCount).toBe(1);
 });
@@ -43,14 +43,14 @@ test("initial active timespan is monthly", () => {
 
 test("clicking on plan actvates it", () => {
   const { container } = render(<SelectPlan />);
-  const cardPlanDivs = container.querySelectorAll(".card-plan"); // eslint-disable-line
+  const cardPlanDivs = container.querySelectorAll(".plan"); // eslint-disable-line
   const planDivs = container.querySelectorAll(".plan"); // eslint-disable-line
   const planDivsArray = [...planDivs];
   fireEvent.click(planDivsArray[1]);
-  expect(cardPlanDivs[1]).toHaveClass("card-plan--active");
+  expect(cardPlanDivs[1]).toHaveClass("plan--active");
   const cardPlanDivsArray = [...cardPlanDivs];
   const activeDivCount = cardPlanDivsArray.filter((div) =>
-    div.classList.contains("card-plan--active")
+    div.classList.contains("plan--active")
   ).length;
   expect(activeDivCount).toBe(1);
 });

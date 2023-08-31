@@ -28,7 +28,7 @@ function DesignSystem() {
 
   return (
     <div className="design-system grid">
-      <div>
+      {/* <div>
         <ProgressIndicator steps={STEPS} activeStepCode={STEPS[0].code} />
       </div>
       <div>
@@ -106,11 +106,11 @@ function DesignSystem() {
         <StepCard stepInfo={STEPS[0]}>
           <h1>step card content</h1>
         </StepCard>
-      </div>
+      </div> */}
       <div>
         <PersonalInfo />
       </div>
-      <div>
+      {/* <div>
         <Plan
           plan={getPlanByCode("ARCADE")}
           timeSpan={getTimespanByCode("MONTH")}
@@ -120,7 +120,7 @@ function DesignSystem() {
       </div>
       <div>
         <SelectPlan />
-      </div>
+      </div> */}
     </div>
   );
 }

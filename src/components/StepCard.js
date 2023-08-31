@@ -6,7 +6,7 @@ import "./StepCard.css";
 
 function StepCard({ className, stepInfo, children }) {
   return (
-    <Card className={`card-step ${className}`}>
+    <Card className={`step-card ${className}`} onClick={null}>
       <div className="step-card grid">
         <h1 className="fs-700 fw-bold text-marine-blue">{stepInfo.title}</h1>
         <p>{stepInfo.description}</p>

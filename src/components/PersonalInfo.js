@@ -27,7 +27,7 @@ function PersonalInfo({ onValidChange }) {
     onValidChange(newValidState);
   };
   return (
-    <StepCard className="card-step-personal-info" stepInfo={personalInfoStep}>
+    <StepCard className="personal-info" stepInfo={personalInfoStep}>
       <PersonalInfoField
         type="text"
         id="name"

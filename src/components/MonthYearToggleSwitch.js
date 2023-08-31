@@ -14,7 +14,7 @@ function MonthYearToggleSwitch({ activeTimespan, onTimespanChange }) {
   const isMonthSelected = activeTimespan === monthlyTimespan;
   const isYearSelected = activeTimespan === yearlyTimespan;
   return (
-    <Card className="card-month-year-toggle-switch flex">
+    <Card className="month-year-toggle-switch flex">
       <p
         className={`month-title ${
           isMonthSelected ? "month-title--active" : undefined
