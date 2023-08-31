@@ -20,9 +20,7 @@ test("div surrounding img initially has aria-selected false", () => {
   const monthlyTimespan = getTimespanByCode("MONTH");
   render(<AddOn addOn={onlineAddOn} timeSpan={monthlyTimespan} />);
   const checkmarkImageElement = screen.getByRole("img");
-  // console.log(checkmarkImageElement);
-  const divElement = checkmarkImageElement.closest("div");
-  // console.log(divElement);
+  const divElement = checkmarkImageElement.closest("div"); // eslint-disable-line
   expect(divElement).toHaveAttribute("aria-selected", "false");
 });
 
