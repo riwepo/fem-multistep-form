@@ -11,6 +11,7 @@ test("label is rendered", () => {
       label="label"
       placeholder="placeholder"
       validator={null}
+      onValidChange={null}
     />
   );
   const labelElement = screen.getByText("label");
@@ -25,6 +26,7 @@ test("error message is empty", () => {
       label="label"
       placeholder="placeholder"
       validator={null}
+      onValidChange={null}
     />
   );
 
@@ -41,6 +43,7 @@ test("input is rendered", () => {
       label="label"
       placeholder="placeholder"
       validator={null}
+      onValidChange={null}
     />
   );
 
@@ -49,6 +52,7 @@ test("input is rendered", () => {
 });
 
 test("error message if input is empty and is blurred", () => {
+  const onValidChange = jest.fn();
   const { container } = render(
     <PersonalInfoField
       type="text"
@@ -56,6 +60,7 @@ test("error message if input is empty and is blurred", () => {
       label="label"
       placeholder="placeholder"
       validator={null}
+      onValidChange={onValidChange}
     />
   );
 
@@ -67,9 +72,30 @@ test("error message if input is empty and is blurred", () => {
   expect(errorMessageElement?.textContent).toEqual("This field is required.");
 });
 
+test("onValidChange called with false if input is empty and is blurred", () => {
+  const onValidChange = jest.fn();
+  render(
+    <PersonalInfoField
+      type="text"
+      id="id"
+      label="label"
+      placeholder="placeholder"
+      validator={null}
+      onValidChange={onValidChange}
+    />
+  );
+
+  const inputElement = screen.getByRole("textbox");
+
+  fireEvent.blur(inputElement);
+
+  expect(onValidChange).toBeCalledWith("id", false);
+});
+
 test("validator is called if input has text and is blurred", () => {
   const inputText = "hello world";
   const validator = jest.fn();
+  const onValidChange = jest.fn();
   render(
     <PersonalInfoField
       type="text"
@@ -77,6 +103,7 @@ test("validator is called if input has text and is blurred", () => {
       label="label"
       placeholder="placeholder"
       validator={validator}
+      onValidChange={onValidChange}
     />
   );
 
@@ -88,12 +115,35 @@ test("validator is called if input has text and is blurred", () => {
   expect(validator).toBeCalledWith(inputText);
 });
 
+test("onValidChange called with true if input is valid and is blurred", () => {
+  const inputText = "hello world";
+  const validator = jest.fn((value) => "");
+  const onValidChange = jest.fn();
+  render(
+    <PersonalInfoField
+      type="text"
+      id="id"
+      label="label"
+      placeholder="placeholder"
+      validator={validator}
+      onValidChange={onValidChange}
+    />
+  );
+
+  const inputElement = screen.getByRole("textbox");
+  fireEvent.change(inputElement, { target: { value: inputText } });
+  fireEvent.blur(inputElement);
+
+  expect(onValidChange).toBeCalledWith("id", true);
+});
+
 test("validator error message is displayed as error", () => {
   const inputText = "hello world";
   const errorMessage = "error message";
   const validator = jest.fn((text) => {
     return errorMessage;
   });
+  const onValidChange = jest.fn();
   const { container } = render(
     <PersonalInfoField
       type="text"
@@ -101,6 +151,7 @@ test("validator error message is displayed as error", () => {
       label="label"
       placeholder="placeholder"
       validator={validator}
+      onValidChange={onValidChange}
     />
   );
 
