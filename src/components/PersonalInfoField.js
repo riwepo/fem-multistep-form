@@ -2,7 +2,14 @@ import React, { useState } from "react";
 
 import "./PersonalInfoField.css";
 
-function PersonalInfoField({ type, id, label, placeholder, validator }) {
+function PersonalInfoField({
+  type,
+  id,
+  label,
+  placeholder,
+  validator,
+  onValidChange,
+}) {
   const [enteredValue, setEnteredValue] = useState("");
   const [enteredValueIsTouched, setEnteredValueIsTouched] = useState(false);
   const [enteredValueHasError, setEnteredValueHasError] = useState(false);
@@ -20,6 +27,7 @@ function PersonalInfoField({ type, id, label, placeholder, validator }) {
       setErrorMessage("This field is required.");
       setEnteredValueHasError(true);
       setEnteredValueIsValid(false);
+      onValidChange(id, false);
       return;
     }
     const error = validator(localValue);
@@ -27,12 +35,14 @@ function PersonalInfoField({ type, id, label, placeholder, validator }) {
       setErrorMessage(error);
       setEnteredValueHasError(true);
       setEnteredValueIsValid(false);
+      onValidChange(id, false);
       return;
     }
 
     setErrorMessage("");
     setEnteredValueHasError(false);
     setEnteredValueIsValid(true);
+    onValidChange(id, true);
   };
 
   return (
