@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 
 import ProgressIndicator from "../ProgressIndicator";
 import StepControl from "../StepControl";
@@ -8,17 +8,21 @@ import { StepContext } from "../../context/step-context";
 import { STEPS } from "../../utils/steps";
 
 import "./PageContainer.css";
+import PersonalInfo from "../PersonalInfo";
+import SelectPlan from "../SelectPlan";
 
-function PageContainer({ step, children }) {
+function PageContainer() {
+  const [activeStepCode, setActiveStepCode] = useState("PERSONAL_INFO");
   const stepContext = useContext(StepContext);
-  const isStepValid = stepContext.getIsValid(step.code);
+  const isStepValid = stepContext.getIsValid(activeStepCode);
 
   return (
     <div className="page-container grid">
       <div className="progress-container">
-        <ProgressIndicator steps={STEPS} activeStepCode={step.code} />
+        <ProgressIndicator steps={STEPS} activeStepCode={activeStepCode} />
       </div>
-      <div className="child-container">{children}</div>
+      {activeStepCode === "PERSONAL_INFO" && <PersonalInfo />}
+      {activeStepCode === "SELECT_PLAN" && <SelectPlan />}
       <StepControl canGoBack={false} isValid={isStepValid} isLastPage={false} />
     </div>
   );

@@ -3,6 +3,8 @@ import React from "react";
 import DesignSystem from "./components/DesignSystem";
 import PersonalInfoPage from "./components/pages/PersonalInfoPage";
 import SelectPlanPage from "./components/pages/SelectPlanPage";
+import PageContainer from "./components/pages/PageContainer";
+
 import StepContextProvider from "./context/step-context";
 
 function App() {
@@ -10,8 +12,9 @@ function App() {
     <div className="App">
       <StepContextProvider>
         {/* <PersonalInfoPage /> */}
-        <SelectPlanPage />
+        {/* <SelectPlanPage /> */}
         {/* <DesignSystem /> */}
+        <PageContainer />
       </StepContextProvider>
     </div>
   );
