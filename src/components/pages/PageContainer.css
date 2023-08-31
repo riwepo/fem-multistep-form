@@ -1,0 +1,55 @@
+.page-container {
+  width: 100vw;
+  max-width: 100%;
+  grid-template-areas:
+    "progress"
+    "child"
+    "step";
+
+  background-image: url("../../assets/images/bg-sidebar-mobile.svg");
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: contain;
+  background-color: hsl(var(--clr-light-blue));
+}
+
+.page-container .progress-container {
+  grid-area: progress;
+}
+
+.page-container .child-container {
+  grid-area: child;
+  margin-inline: 1rem;
+}
+
+.page-container .step-control {
+  grid-area: step;
+  width: 100%;
+  background-color: hsl(var(--clr-white));
+}
+
+@media (min-width: 720px) {
+  .page-container {
+    grid-template-areas:
+      "progress child"
+      "progress step";
+
+    border-radius: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2rem;
+    max-width: 100rem;
+    background-image: none;
+    background-color: hsl(var(--clr-white));
+    padding: 1rem;
+  }
+
+  .page-container .progress-container {
+    background-image: url("../../assets/images/bg-sidebar-desktop.svg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    border-radius: 1rem;
+    height: 100%;
+  }
+}
