@@ -27,3 +27,29 @@ export const STEPS = [
 export function getStepByCode(code) {
   return getItemByCode(STEPS, code);
 }
+
+export function hasNextStep(code) {
+  const step = getStepByCode(code);
+  const index = STEPS.indexOf(step);
+  return index < STEPS.length - 1;
+}
+
+export function getNextStep(code) {
+  if (!hasNextStep(code)) throw new Error(`invalid next step ${code}`);
+  const step = getStepByCode(code);
+  const index = STEPS.indexOf(step);
+  return STEPS[index + 1];
+}
+
+export function hasPrevStep(code) {
+  const step = getStepByCode(code);
+  const index = STEPS.indexOf(step);
+  return index > 0;
+}
+
+export function getPrevStep(code) {
+  if (!hasPrevStep(code)) throw new Error(`invalid prev step ${code}`);
+  const step = getStepByCode(code);
+  const index = STEPS.indexOf(step);
+  return STEPS[index - 1];
+}
