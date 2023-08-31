@@ -5,7 +5,7 @@ import "./StepControl.css";
 function StepControl({
   canGoBack,
   isValid,
-  isLastPage,
+  isLastStep,
   onBackClicked,
   onFwdClicked,
 }) {
@@ -20,11 +20,11 @@ function StepControl({
         Go back
       </button>
       <button
-        className={`btn btn-next ${isLastPage ? "btn-next--last" : undefined}`}
+        className={`btn btn-next ${isLastStep ? "btn-next--last" : undefined}`}
         disabled={!isValid}
         onClick={onFwdClicked}
       >
-        {isLastPage ? "Confirm" : "Next step"}
+        {isLastStep ? "Confirm" : "Next step"}
       </button>
     </div>
   );
