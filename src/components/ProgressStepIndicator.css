@@ -5,8 +5,8 @@
   display: grid;
   justify-content: center;
   align-items: center;
-  width: 4rem;
-  height: 4rem;
+  width: 3em;
+  height: 3em;
   border: 1px solid hsl(var(--clr-white));
   border-radius: 50%;
 }
