@@ -44,3 +44,8 @@
 .step-control .btn-next.btn-next--last:focus {
   background-color: hsl(var(--clr-purplish-blue-tint));
 }
+
+.step-control .btn-next:disabled {
+  background-color: hsl(var(--clr-light-gray));
+  cursor: not-allowed;
+}
