@@ -4,6 +4,8 @@ import { fireEvent, render, screen } from "@testing-library/react";
 
 import SelectPlan from "./SelectPlan";
 
+import { StepContext } from "../context/step-context";
+
 import { PLANS } from "../utils/plans";
 import { getPriceDisplay } from "../utils/utils";
 import { getTimespanByCode } from "../utils/timespans";
@@ -72,4 +74,35 @@ test("toggling timespan updates all prices", () => {
     const priceElement = screen.getByText(priceDisplay);
     expect(priceElement).toBeInTheDocument();
   });
+});
+
+test("selecting a plan calls set step valid on context", () => {
+  const stepCode = "SELECT_PLAN";
+  const testStepState = [{ code: stepCode, isValid: false }];
+  const mockGetIsValid = jest.fn();
+  const mockSetIsValid = jest.fn();
+
+  function MockStepContextProvider({ children }) {
+    return (
+      <StepContext.Provider
+        value={{
+          stepState: testStepState,
+          getIsValid: mockGetIsValid,
+          setIsValid: mockSetIsValid,
+        }}
+      >
+        {children}
+      </StepContext.Provider>
+    );
+  }
+
+  const { container } = render(
+    <MockStepContextProvider>
+      <SelectPlan />
+    </MockStepContextProvider>
+  );
+
+  const planElement = container.querySelector(".plan"); // eslint-disable-line
+  planElement && fireEvent.click(planElement);
+  expect(mockSetIsValid).toBeCalledWith(stepCode, true);
 });
