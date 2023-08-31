@@ -20,15 +20,14 @@ test("toggle switch rendered", () => {
   expect(buttonElement).toBeInTheDocument();
 });
 
-test("initial active plan is first plan", () => {
+test("initially no plan is active", () => {
   const { container } = render(<SelectPlan />);
   const cardPlanDivs = container.querySelectorAll(".plan"); // eslint-disable-line
-  expect(cardPlanDivs[0]).toHaveClass("plan--active");
   const cardPlanDivsArray = [...cardPlanDivs];
   const activeDivCount = cardPlanDivsArray.filter((div) =>
     div.classList.contains("plan--active")
   ).length;
-  expect(activeDivCount).toBe(1);
+  expect(activeDivCount).toBe(0);
 });
 
 test("initial active timespan is monthly", () => {
