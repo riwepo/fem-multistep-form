@@ -15,8 +15,11 @@ function PersonalInfoPage() {
     setIsPageValid(isValid);
   };
   return (
-    <div className="personal-info-page flex bg-light-blue">
-      <ProgressIndicator steps={STEPS} activeStepCode={"PERSONAL_INFO"} />
+    <div className="personal-info-page grid">
+      <div className="progress-container">
+        <ProgressIndicator steps={STEPS} activeStepCode={"PERSONAL_INFO"} />
+      </div>
+
       <PersonalInfo onValidChange={validChangeHandler} />
       <StepControl canGoBack={false} isValid={isPageValid} isLastPage={false} />
     </div>
