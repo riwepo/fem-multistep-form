@@ -16,6 +16,14 @@ function PageContainer() {
   const stepContext = useContext(StepContext);
   const isStepValid = stepContext.getIsValid(activeStepCode);
 
+  const backClickHandler = () => {
+    console.log("back clicked");
+  };
+
+  const fwdClickHandler = () => {
+    console.log("fwd clicked");
+  };
+
   return (
     <div className="page-container grid">
       <div className="progress-container">
@@ -23,7 +31,13 @@ function PageContainer() {
       </div>
       {activeStepCode === "PERSONAL_INFO" && <PersonalInfo />}
       {activeStepCode === "SELECT_PLAN" && <SelectPlan />}
-      <StepControl canGoBack={false} isValid={isStepValid} isLastPage={false} />
+      <StepControl
+        canGoBack={false}
+        isValid={isStepValid}
+        isLastPage={false}
+        onBackClicked={backClickHandler}
+        onFwdClicked={fwdClickHandler}
+      />
     </div>
   );
 }
