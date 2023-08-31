@@ -1,15 +1,15 @@
 import React, { useState, useContext } from "react";
 
-import ProgressIndicator from "../ProgressIndicator";
-import StepControl from "../StepControl";
+import ProgressIndicator from "./ProgressIndicator";
+import StepControl from "./StepControl";
 
-import { StepContext } from "../../context/step-context";
+import { StepContext } from "../context/step-context";
 
-import { STEPS } from "../../utils/steps";
+import { STEPS } from "../utils/steps";
 
 import "./PageContainer.css";
-import PersonalInfo from "../PersonalInfo";
-import SelectPlan from "../SelectPlan";
+import PersonalInfo from "./PersonalInfo";
+import SelectPlan from "./SelectPlan";
 
 function PageContainer() {
   const [activeStepCode, setActiveStepCode] = useState("PERSONAL_INFO");
