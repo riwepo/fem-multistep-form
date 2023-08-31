@@ -4,7 +4,7 @@ import Card from "./Card";
 
 import "./StepCard.css";
 
-function StepCard({ className, children, stepInfo }) {
+function StepCard({ className, stepInfo, children }) {
   return (
     <Card className={`card-step ${className}`}>
       <div className="step-card grid">
