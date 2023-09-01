@@ -23,7 +23,35 @@ test("phone input is rendered", () => {
   expect(phoneInput).toBeInTheDocument();
 });
 
-test("StepContext setIsValid called with correct values", () => {
+test("StepContext setIsValid called with false on first render", () => {
+  const stepCode = "PERSONAL_INFO";
+  const testStepState = [{ code: stepCode, isValid: false }];
+  const mockGetIsValid = jest.fn();
+  const mockSetIsValid = jest.fn();
+  function MockStepContextProvider({ children }) {
+    return (
+      <StepContext.Provider
+        value={{
+          stepState: testStepState,
+          getIsValid: mockGetIsValid,
+          setIsValid: mockSetIsValid,
+        }}
+      >
+        {children}
+      </StepContext.Provider>
+    );
+  }
+
+  render(
+    <MockStepContextProvider>
+      <PersonalInfo />
+    </MockStepContextProvider>
+  );
+
+  expect(mockSetIsValid).toBeCalledWith(stepCode, false);
+});
+
+test("StepContext setIsValid called with false until all values valid", () => {
   const stepCode = "PERSONAL_INFO";
   const testStepState = [{ code: stepCode, isValid: false }];
   const mockGetIsValid = jest.fn();

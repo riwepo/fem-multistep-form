@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 
 import StepCard from "./StepCard";
 import PersonalInfoField from "./PersonalInfoField";
@@ -16,14 +16,20 @@ import { getStepByCode } from "../utils/steps";
 import "./PersonalInfo.css";
 
 const personalInfoStep = getStepByCode("PERSONAL_INFO");
+const defaultValidState = {
+  name: false,
+  email: false,
+  phone: false,
+};
 
 function PersonalInfo() {
-  const [validState, setValidState] = useState({
-    name: false,
-    email: false,
-    phone: false,
-  });
+  const [validState, setValidState] = useState(defaultValidState);
   const stepContext = useContext(StepContext);
+  // on first render, set state invalid
+  useEffect(() => {
+    console.log("use effect ran");
+    stepContext.setIsValid("PERSONAL_INFO", false);
+  }, []);
 
   const validChangeHandler = (id, isValid) => {
     const newValidState = { ...validState, [id]: isValid };
