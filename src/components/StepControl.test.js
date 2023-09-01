@@ -9,7 +9,7 @@ test("back button has class visible", () => {
     <StepControl
       canGoBack={true}
       isValid={true}
-      isLastPage={false}
+      isLastStep={false}
       onBackClicked={null}
       onFwdClicked={null}
     />
@@ -23,7 +23,7 @@ test("back button doesn't have class visible", () => {
     <StepControl
       canGoBack={false}
       isValid={true}
-      isLastPage={false}
+      isLastStep={false}
       onBackClicked={null}
       onFwdClicked={null}
     />
@@ -37,7 +37,7 @@ test("not last page fwd button says 'Next step'", () => {
     <StepControl
       canGoBack={true}
       isValid={true}
-      isLastPage={false}
+      isLastStep={false}
       onBackClicked={null}
       onFwdClicked={null}
     />
@@ -51,7 +51,7 @@ test("last page fwd button says 'Confirm'", () => {
     <StepControl
       canGoBack={true}
       isValid={true}
-      isLastPage={true}
+      isLastStep={true}
       onBackClicked={null}
       onFwdClicked={null}
     />
@@ -65,7 +65,7 @@ test("if valid forward button is enabled", () => {
     <StepControl
       canGoBack={true}
       isValid={true}
-      isLastPage={false}
+      isLastStep={false}
       onBackClicked={null}
       onFwdClicked={null}
     />
@@ -79,7 +79,7 @@ test("if invalid forward button is disabled", () => {
     <StepControl
       canGoBack={true}
       isValid={false}
-      isLastPage={false}
+      isLastStep={false}
       onBackClicked={null}
       onFwdClicked={null}
     />
@@ -95,7 +95,7 @@ test("if can go back and back button clicked callback", () => {
     <StepControl
       canGoBack={true}
       isValid={true}
-      isLastPage={false}
+      isLastStep={false}
       onBackClicked={onBackClicked}
       onFwdClicked={onFwdClicked}
     />
@@ -113,7 +113,7 @@ test("if valid and forward button clicked callback", () => {
     <StepControl
       canGoBack={true}
       isValid={true}
-      isLastPage={false}
+      isLastStep={false}
       onBackClicked={onBackClicked}
       onFwdClicked={onFwdClicked}
     />

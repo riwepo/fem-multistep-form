@@ -32,10 +32,10 @@ function DesignSystem() {
         <ProgressIndicator steps={STEPS} activeStepCode={STEPS[0].code} />
       </div>
       <div>
-        <StepControl canGoBack={false} isValid={true} isLastPage={false} />
-        <StepControl canGoBack={true} isValid={true} isLastPage={false} />
-        <StepControl canGoBack={true} isValid={true} isLastPage={true} />
-        <StepControl canGoBack={true} isValid={false} isLastPage={false} />
+        <StepControl canGoBack={false} isValid={true} isLastStep={false} />
+        <StepControl canGoBack={true} isValid={true} isLastStep={false} />
+        <StepControl canGoBack={true} isValid={true} isLastStep={true} />
+        <StepControl canGoBack={true} isValid={false} isLastStep={false} />
       </div>
       <div>
         <Plan
