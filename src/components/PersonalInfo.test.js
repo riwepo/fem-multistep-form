@@ -90,7 +90,7 @@ test("StepContext setIsValid called with false until all values valid", () => {
   fireEvent.blur(emailInputElement);
   expect(mockSetIsValid).toBeCalledWith(stepCode, false);
 
-  const validPhone = "0466250293";
+  const validPhone = "1234567890";
   const phoneInputElement = screen.getByPlaceholderText("e.g. +1 234 567 890");
   fireEvent.change(phoneInputElement, { target: { value: validPhone } });
   fireEvent.blur(phoneInputElement);

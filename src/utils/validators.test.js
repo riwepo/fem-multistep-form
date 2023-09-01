@@ -16,12 +16,12 @@ test("should return error string from blank email", () => {
 });
 
 test("should return empty string from valid phone", () => {
-  const errorMessage = validatePhone("0466250293");
+  const errorMessage = validatePhone("1234567890");
   expect(errorMessage).toEqual("");
 });
 
 test("should return error string from invalid phone", () => {
-  const errorMessage = validatePhone("0466250293###");
+  const errorMessage = validatePhone("1234567890###");
   expect(errorMessage).toEqual("Please enter a valid phone number");
 });
 
