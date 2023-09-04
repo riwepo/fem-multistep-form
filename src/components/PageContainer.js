@@ -16,9 +16,14 @@ import {
 import "./PageContainer.css";
 import PersonalInfo from "./PersonalInfo";
 import SelectPlan from "./SelectPlan";
+import PickAddOns from "./PickAddOns";
+import { TIME_SPANS, getTimespanByCode } from "../utils/timespans";
 
 function PageContainer() {
   const [activeStepCode, setActiveStepCode] = useState(STEPS[0].code);
+  const [activeTimespanCode, setActiveTimespanCode] = useState(
+    TIME_SPANS[0].code
+  );
   const stepContext = useContext(StepContext);
   const isStepValid = stepContext.isStepValid(activeStepCode);
   const isFirstStep = !hasPrevStep(activeStepCode);
@@ -38,13 +43,27 @@ function PageContainer() {
     }
   };
 
+  const timerspanChangeHandler = (timespanCode) => {
+    setActiveTimespanCode(timespanCode);
+  };
+
+  const activeTimespan = getTimespanByCode(activeTimespanCode);
+
   return (
     <div className="page-container grid">
       <div className="progress-container">
         <ProgressIndicator steps={STEPS} activeStepCode={activeStepCode} />
       </div>
       {activeStepCode === "PERSONAL_INFO" && <PersonalInfo />}
-      {activeStepCode === "SELECT_PLAN" && <SelectPlan />}
+      {activeStepCode === "SELECT_PLAN" && (
+        <SelectPlan
+          timespan={activeTimespan}
+          onTimespanChange={timerspanChangeHandler}
+        />
+      )}
+      {activeStepCode === "PICK_ADD_ONS" && (
+        <PickAddOns timespan={activeTimespan} />
+      )}
       <StepControl
         canGoBack={!isFirstStep}
         isValid={isStepValid}
