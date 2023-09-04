@@ -8,17 +8,13 @@ import { StepContext } from "../context/step-context";
 
 import { PLANS } from "../utils/plans";
 import { getStepByCode } from "../utils/steps";
-import { TIME_SPANS, getTimespanByCode } from "../utils/timespans";
 
 import "./SelectPlan.css";
 
 const STEP_CODE = "SELECT_PLAN";
 
-function SelectPlan() {
+function SelectPlan({ timespan, onTimespanChange }) {
   const stepContext = useContext(StepContext);
-  const [activeTimeSpanCode, setActiveTimespanCode] = useState(
-    TIME_SPANS[0].code
-  );
   const [selectedPlan, setSelectedPlan] = useState();
 
   // on first render, set state of form from the context
@@ -38,11 +34,10 @@ function SelectPlan() {
 
   const timespanChangeHandler = (isToggleActive) => {
     const newTimeSpanCode = isToggleActive ? "MONTH" : "YEAR";
-    setActiveTimespanCode(newTimeSpanCode);
+    onTimespanChange(newTimeSpanCode);
   };
-  const activeTimespan = getTimespanByCode(activeTimeSpanCode);
 
-  const selectPlanStep = getStepByCode("SELECT_PLAN");
+  const selectPlanStep = getStepByCode(STEP_CODE);
 
   return (
     <StepCard className="select-plan" stepInfo={selectPlanStep}>
@@ -51,7 +46,7 @@ function SelectPlan() {
           <Plan
             key={plan.id}
             plan={plan}
-            timeSpan={activeTimespan}
+            timeSpan={timespan}
             isActive={selectedPlan === plan.code}
             onActivated={activateHandler}
           />
@@ -59,7 +54,7 @@ function SelectPlan() {
       })}
 
       <MonthYearToggleSwitch
-        activeTimespan={activeTimespan}
+        activeTimespan={timespan}
         onTimespanChange={timespanChangeHandler}
       />
     </StepCard>
