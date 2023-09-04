@@ -23,7 +23,7 @@ export const STEPS = [
     code: "PICK_ADD_ONS",
     title: "Pick add-ons",
     description: "Add-ons help enhance your gaming experience.",
-    fieldCodes: [],
+    fieldCodes: ["ONLINE", "STORAGE", "CUSTOMIZABLE"],
   },
 ];
 
