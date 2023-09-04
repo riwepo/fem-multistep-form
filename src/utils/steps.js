@@ -25,6 +25,14 @@ export const STEPS = [
     description: "Add-ons help enhance your gaming experience.",
     fieldCodes: ["ONLINE", "STORAGE", "CUSTOMIZABLE"],
   },
+  {
+    id: 4,
+    number: "4",
+    code: "FINISH_UP",
+    title: "Finishing up",
+    description: "Double check everything looks OK before confirming.",
+    fieldCodes: ["CONFIRM"],
+  },
 ];
 
 export function getStepByCode(code) {
