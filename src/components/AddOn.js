@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Card from "./Card";
 import Checkbox from "./Checkbox";
 
-import { getPrice } from "../utils/utils";
+import { getPriceDisplay } from "../utils/utils";
 
 import "./AddOn.css";
 
@@ -22,9 +22,7 @@ function AddOn({ addOn, timespan }) {
           <p className="text-marine-blue">{addOn.name}</p>
           <p>{addOn.description}</p>
         </div>
-        <p className="text-purplish-blue">{`$${getPrice(addOn, timespan)}/${
-          timespan.display
-        }`}</p>
+        <p className="text-purplish-blue">{getPriceDisplay(addOn, timespan)}</p>
       </div>
     </Card>
   );
