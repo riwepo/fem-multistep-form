@@ -120,3 +120,42 @@ test("clicking back button takes us back to personal info step", () => {
   const nameInputElement = screen.getByPlaceholderText("e.g. Stephen King");
   expect(nameInputElement).toBeInTheDocument();
 });
+
+test("when we go back to personal info test, information is retained", () => {
+  render(
+    <StepContextProvider>
+      <PageContainer />
+    </StepContextProvider>
+  );
+
+  enterValidPersonalInfo();
+
+  const fwdButtonElement = screen.getByText("Next step");
+  fireEvent.click(fwdButtonElement);
+
+  const backButtonElement = screen.getByText("Go back");
+  fireEvent.click(backButtonElement);
+
+  const nameInputElement = screen.getByPlaceholderText("e.g. Stephen King");
+  expect(nameInputElement.value).toBe("Stephen King");
+});
+
+test("when we go back to personal info test, step is still valid", () => {
+  const { container } = render(
+    <StepContextProvider>
+      <PageContainer />
+    </StepContextProvider>
+  );
+
+  enterValidPersonalInfo();
+
+  const fwdButtonElement = screen.getByText("Next step");
+  fireEvent.click(fwdButtonElement);
+
+  const backButtonElement = screen.getByText("Go back");
+  fireEvent.click(backButtonElement);
+
+  const errorMessageElement = container.querySelector("p.error-message"); // eslint-disable-line
+  expect(errorMessageElement).toBeInTheDocument();
+  expect(errorMessageElement?.textContent).toEqual("");
+});
