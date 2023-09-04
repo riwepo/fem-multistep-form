@@ -23,3 +23,9 @@ export function getItemByCode(items, code) {
   }
   return matching[0];
 }
+
+export function replaceItemByCode(items, newItem) {
+  const nonMatching = items.filter((item) => item.code !== newItem.code);
+  const result = [...nonMatching, newItem];
+  return result;
+}
