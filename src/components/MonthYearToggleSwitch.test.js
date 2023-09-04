@@ -4,12 +4,35 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import MonthYearToggleSwitch from "./MonthYearToggleSwitch";
 import { getTimespanByCode } from "../utils/timespans";
 
-test("if active timespan is month, month is aria-selected, year is not", () => {
-  const monthTimespan = getTimespanByCode("MONTH");
+const monthlyTimespan = getTimespanByCode("MONTH");
+const yearlyTimespan = getTimespanByCode("YEAR");
 
+test("if active timespan is month, toggle should be inactive", () => {
+  const { container } = render(
+    <MonthYearToggleSwitch
+      activeTimespan={monthlyTimespan}
+      onTimespanChange={null}
+    />
+  );
+  const indicatorElement = container.querySelector(".toggle-switch .indicator"); // eslint-disable-line
+  expect(indicatorElement).not.toHaveClass("indicator--active");
+});
+
+test("if active timespan is year, toggle should be active", () => {
+  const { container } = render(
+    <MonthYearToggleSwitch
+      activeTimespan={yearlyTimespan}
+      onTimespanChange={null}
+    />
+  );
+  const indicatorElement = container.querySelector(".toggle-switch .indicator"); // eslint-disable-line
+  expect(indicatorElement).toHaveClass("indicator--active");
+});
+
+test("if active timespan is month, month is aria-selected, year is not", () => {
   render(
     <MonthYearToggleSwitch
-      activeTimespan={monthTimespan}
+      activeTimespan={monthlyTimespan}
       onTimespanChange={null}
     />
   );
@@ -20,11 +43,9 @@ test("if active timespan is month, month is aria-selected, year is not", () => {
 });
 
 test("if active timespan is year, year is aria-selected, month is not", () => {
-  const yearTimespan = getTimespanByCode("YEAR");
-
   render(
     <MonthYearToggleSwitch
-      activeTimespan={yearTimespan}
+      activeTimespan={yearlyTimespan}
       onTimespanChange={null}
     />
   );
@@ -35,12 +56,11 @@ test("if active timespan is year, year is aria-selected, month is not", () => {
 });
 
 test("after click on toggle, onTimespanChange is called", () => {
-  const yearTimespan = getTimespanByCode("YEAR");
   const onTimespanChange = jest.fn();
 
   render(
     <MonthYearToggleSwitch
-      activeTimespan={yearTimespan}
+      activeTimespan={yearlyTimespan}
       onTimespanChange={onTimespanChange}
     />
   );
