@@ -2,6 +2,10 @@ import React, { useState, useContext } from "react";
 
 import ProgressIndicator from "./ProgressIndicator";
 import StepControl from "./StepControl";
+import PersonalInfo from "./PersonalInfo";
+import SelectPlan from "./SelectPlan";
+import PickAddOns from "./PickAddOns";
+import FinishUp from "./FinishUp";
 
 import { StepContext } from "../context/step-context";
 
@@ -12,12 +16,9 @@ import {
   hasNextStep,
   getNextStep,
 } from "../utils/steps";
+import { TIME_SPANS, getTimespanByCode } from "../utils/timespans";
 
 import "./PageContainer.css";
-import PersonalInfo from "./PersonalInfo";
-import SelectPlan from "./SelectPlan";
-import PickAddOns from "./PickAddOns";
-import { TIME_SPANS, getTimespanByCode } from "../utils/timespans";
 
 function PageContainer() {
   const [activeStepCode, setActiveStepCode] = useState(STEPS[0].code);
@@ -64,6 +65,7 @@ function PageContainer() {
       {activeStepCode === "PICK_ADD_ONS" && (
         <PickAddOns timespan={activeTimespan} />
       )}
+      {activeStepCode === "FINISH_UP" && <FinishUp timespan={activeTimespan} />}
       <StepControl
         canGoBack={!isFirstStep}
         isValid={isStepValid}
