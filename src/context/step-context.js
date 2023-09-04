@@ -1,46 +1,67 @@
 import React, { useState } from "react";
 
+import { getItemByCode, replaceItemByCode } from "../utils/utils";
+
 import { STEPS } from "../utils/steps";
 
+const defaultStepStates = STEPS.map((step) => ({
+  code: step.code,
+  fieldStates: step.fieldCodes.map((code) => ({
+    code: code,
+    value: "",
+    isValid: false,
+    isInitialised: false,
+  })),
+}));
+
 export const StepContext = React.createContext({
-  // array with object for each step in the wizard
-  // each object has structure
-  // {code: step_code, isValid: boolean}
-  stepState: [{}],
+  stepStates: defaultStepStates,
 
-  // function to toggle valid flag
-  setIsValid: (stepCode, isValid) => {},
+  setStepFieldState: (stepCode, fieldCode, fieldValue, isValid) => {},
 
-  // checks if valid
-  getIsValid: (stepCode) => {},
+  getStepFieldState: (stepCode, fieldCode) => {},
+
+  isStepValid: (stepCode) => {},
 });
 
 export default function StepContextProvider({ children }) {
-  const defaultState = STEPS.map((step) => ({
-    code: step.code,
-    isValid: false,
-  }));
-  const [stepState, setStepState] = useState(defaultState);
+  const [stepStates, setStepStates] = useState(defaultStepStates);
 
-  const getIsValid = (stepCode) => {
-    const stepStatesOfInterest = stepState.filter(
-      (step) => step.code === stepCode
-    );
-    return stepStatesOfInterest.length === 1 && stepStatesOfInterest[0].isValid;
+  const _getStepFieldState = (stepCode, fieldCode) => {
+    const step = getItemByCode(stepStates, stepCode);
+    const field = getItemByCode(step.fieldStates, fieldCode);
+    return field;
   };
 
-  const setIsValid = (stepCode, isValid) => {
-    const otherStepStates = stepState.filter((step) => step.code !== stepCode);
-    const newState = [...otherStepStates, { code: stepCode, isValid: isValid }];
-    setStepState(newState);
+  const _setStepFieldState = (stepCode, fieldCode, fieldValue, isValid) => {
+    setStepStates((currentStepStates) => {
+      const step = getItemByCode(currentStepStates, stepCode);
+      const newFieldState = {
+        code: fieldCode,
+        value: fieldValue,
+        isValid: isValid,
+        isInitialised: true,
+      };
+      const newFieldStates = replaceItemByCode(step.fieldStates, newFieldState);
+      const newStepState = { code: stepCode, fieldStates: newFieldStates };
+      const newStepStates = replaceItemByCode(currentStepStates, newStepState);
+      return newStepStates;
+    });
+  };
+
+  const _isStepValid = (stepCode) => {
+    const step = getItemByCode(stepStates, stepCode);
+    const result = step.fieldStates.every((fieldState) => fieldState.isValid);
+    return result;
   };
 
   return (
     <StepContext.Provider
       value={{
-        stepState: stepState,
-        getIsValid: getIsValid,
-        setIsValid: setIsValid,
+        stepStates: defaultStepStates,
+        getStepFieldState: _getStepFieldState,
+        setStepFieldState: _setStepFieldState,
+        isStepValid: _isStepValid,
       }}
     >
       {children}

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import StepCard from "./StepCard";
 import Plan from "./Plan";
@@ -12,17 +12,30 @@ import { TIME_SPANS, getTimespanByCode } from "../utils/timespans";
 
 import "./SelectPlan.css";
 
-function SelectPlan() {
-  const [activePlanCode, setActivePlanCode] = useState("");
-  const stepContext = useContext(StepContext);
+const STEP_CODE = "SELECT_PLAN";
 
-  const activateHandler = (planCode) => {
-    setActivePlanCode(planCode);
-    stepContext.setIsValid("SELECT_PLAN", true);
-  };
+function SelectPlan() {
+  const stepContext = useContext(StepContext);
   const [activeTimeSpanCode, setActiveTimespanCode] = useState(
     TIME_SPANS[0].code
   );
+  const [selectedPlan, setSelectedPlan] = useState();
+
+  // on first render, set state of form from the context
+  useEffect(() => {
+    const stepFieldState = stepContext.getStepFieldState(
+      STEP_CODE,
+      "selected_plan"
+    );
+    const _selectedPlan = stepFieldState.value;
+    setSelectedPlan(_selectedPlan);
+  }, []);
+
+  const activateHandler = (planCode) => {
+    setSelectedPlan(planCode);
+    stepContext.setStepFieldState(STEP_CODE, "selected_plan", planCode, true);
+  };
+
   const timespanChangeHandler = (isToggleActive) => {
     const newTimeSpanCode = isToggleActive ? "MONTH" : "YEAR";
     setActiveTimespanCode(newTimeSpanCode);
@@ -39,7 +52,7 @@ function SelectPlan() {
             key={plan.id}
             plan={plan}
             timeSpan={activeTimespan}
-            isActive={activePlanCode === plan.code}
+            isActive={selectedPlan === plan.code}
             onActivated={activateHandler}
           />
         );

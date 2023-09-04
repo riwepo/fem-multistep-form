@@ -1,48 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
+
+import { StepContext } from "../context/step-context";
 
 import "./PersonalInfoField.css";
 
-function PersonalInfoField({
-  type,
-  id,
-  label,
-  placeholder,
-  validator,
-  onValidChange,
-}) {
+const STEP_CODE = "PERSONAL_INFO";
+
+function PersonalInfoField({ type, id, label, placeholder, validator }) {
   const [enteredValue, setEnteredValue] = useState("");
-  const [enteredValueIsTouched, setEnteredValueIsTouched] = useState(false);
-  const [enteredValueHasError, setEnteredValueHasError] = useState(false);
-  const [enteredValueIsValid, setEnteredValueIsValid] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const stepContext = useContext(StepContext);
+
+  // this will run when the component is mounted
+  // restore values from StepContext
+  useEffect(() => {
+    const stepFieldState = stepContext.getStepFieldState(STEP_CODE, id);
+    if (!stepFieldState.isInitialised) return; // don't validate first time page loads
+    const localValue = stepFieldState.value;
+    setEnteredValue(localValue);
+    setErrorMessage(validator(localValue));
+  }, []);
 
   const changeHandler = (event) => {
-    setEnteredValueIsTouched(true);
+    const localValue = event.target.value.trim();
+    setEnteredValue(localValue);
   };
 
   const blurHandler = (event) => {
     const localValue = event.target.value.trim();
-    setEnteredValue(localValue);
-    if (localValue === "") {
-      setErrorMessage("This field is required.");
-      setEnteredValueHasError(true);
-      setEnteredValueIsValid(false);
-      onValidChange(id, false);
-      return;
-    }
-    const error = validator(localValue);
-    if (error !== "") {
-      setErrorMessage(error);
-      setEnteredValueHasError(true);
-      setEnteredValueIsValid(false);
-      onValidChange(id, false);
-      return;
-    }
-
-    setErrorMessage("");
-    setEnteredValueHasError(false);
-    setEnteredValueIsValid(true);
-    onValidChange(id, true);
+    const errorMessage = validator(localValue);
+    setErrorMessage(errorMessage);
+    stepContext.setStepFieldState(
+      STEP_CODE,
+      id,
+      enteredValue,
+      errorMessage === ""
+    );
   };
 
   return (
@@ -53,19 +46,20 @@ function PersonalInfoField({
         </label>
         <p
           className={`error-message fs-300 text-strawberry-red ${
-            enteredValueHasError ? "error-message--error" : undefined
+            errorMessage !== "" ? "error-message--error" : undefined
           }`}
         >
           {errorMessage}
         </p>
       </div>
       <input
-        className={`input ${enteredValueHasError ? "input--error" : undefined}`}
+        className={`input ${errorMessage !== "" ? "input--error" : undefined}`}
         id={id}
         type={type}
         placeholder={placeholder}
         onChange={changeHandler}
         onBlur={blurHandler}
+        value={enteredValue}
       />
     </div>
   );

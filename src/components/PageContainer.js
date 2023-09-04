@@ -18,10 +18,9 @@ import PersonalInfo from "./PersonalInfo";
 import SelectPlan from "./SelectPlan";
 
 function PageContainer() {
-  const [activeStepCode, setActiveStepCode] = useState("PERSONAL_INFO");
+  const [activeStepCode, setActiveStepCode] = useState(STEPS[0].code);
   const stepContext = useContext(StepContext);
-  const isStepValid = stepContext.getIsValid(activeStepCode);
-
+  const isStepValid = stepContext.isStepValid(activeStepCode);
   const isFirstStep = !hasPrevStep(activeStepCode);
   const isLastStep = !hasNextStep(activeStepCode);
 
@@ -33,7 +32,7 @@ function PageContainer() {
   };
 
   const fwdClickHandler = () => {
-    if (hasNextStep(activeStepCode)) {
+    if (isStepValid && hasNextStep(activeStepCode)) {
       const nextStep = getNextStep(activeStepCode);
       setActiveStepCode(nextStep.code);
     }
