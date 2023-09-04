@@ -7,6 +7,7 @@ export const STEPS = [
     code: "PERSONAL_INFO",
     title: "Personal info",
     description: "Please provide your name, email address and phone number.",
+    fieldCodes: ["name", "email", "phone"],
   },
   {
     id: 2,
@@ -14,6 +15,7 @@ export const STEPS = [
     code: "SELECT_PLAN",
     title: "Select your plan",
     description: "You have the option of monthly or yearly billing.",
+    fieldCodes: ["selected_plan"],
   },
   {
     id: 3,
@@ -21,6 +23,7 @@ export const STEPS = [
     code: "PICK_ADD_ONS",
     title: "Pick add-ons",
     description: "Add-ons help enhance your gaming experience.",
+    fieldCodes: [],
   },
 ];
 
