@@ -10,7 +10,7 @@
   visibility: visible;
   border: none;
   background-color: transparent;
-  color: hsl(var(--clr-light-gray));
+  color: hsl(var(--clr-cool-gray));
 }
 
 .step-control .btn-next {
