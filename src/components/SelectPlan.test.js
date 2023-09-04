@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { fireEvent, render, screen } from "@testing-library/react";
 
@@ -11,11 +11,13 @@ import { getPriceDisplay } from "../utils/utils";
 import { getTimespanByCode } from "../utils/timespans";
 
 const stepCode = "SELECT_PLAN";
+const monthlyTimespan = getTimespanByCode("MONTH");
+const yearlyTimespan = getTimespanByCode("YEAR");
 
 test.each(PLANS)("render plan %p", (plan) => {
   render(
     <StepContextProvider>
-      <SelectPlan />
+      <SelectPlan timespan={monthlyTimespan} onTimespanChange={null} />
     </StepContextProvider>
   );
   const planTitleElement = screen.getByText(plan.name);
@@ -25,7 +27,7 @@ test.each(PLANS)("render plan %p", (plan) => {
 test("toggle switch rendered", () => {
   render(
     <StepContextProvider>
-      <SelectPlan />
+      <SelectPlan timespan={monthlyTimespan} onTimespanChange={null} />
     </StepContextProvider>
   );
   const buttonElement = screen.getByRole("button");
@@ -35,7 +37,7 @@ test("toggle switch rendered", () => {
 test("initially no plan is active", () => {
   const { container } = render(
     <StepContextProvider>
-      <SelectPlan />
+      <SelectPlan timespan={monthlyTimespan} onTimespanChange={null} />
     </StepContextProvider>
   );
   const cardPlanDivs = container.querySelectorAll(".plan"); // eslint-disable-line
@@ -46,24 +48,10 @@ test("initially no plan is active", () => {
   expect(activeDivCount).toBe(0);
 });
 
-test("initial active timespan is monthly", () => {
-  render(
-    <StepContextProvider>
-      <SelectPlan />
-    </StepContextProvider>
-  );
-  const monthlyElement = screen.getByText("Monthly");
-  const yearlyElement = screen.getByText("Yearly");
-  expect(monthlyElement).toBeInTheDocument();
-  expect(monthlyElement).toHaveClass("month-title--active");
-  expect(yearlyElement).toBeInTheDocument();
-  expect(yearlyElement).not.toHaveClass("year-title--active");
-});
-
 test("clicking on plan actvates it", () => {
   const { container } = render(
     <StepContextProvider>
-      <SelectPlan />
+      <SelectPlan timespan={monthlyTimespan} onTimespanChange={null} />
     </StepContextProvider>
   );
   const cardPlanDivs = container.querySelectorAll(".plan"); // eslint-disable-line
@@ -78,25 +66,49 @@ test("clicking on plan actvates it", () => {
   expect(activeDivCount).toBe(1);
 });
 
-test("toggling timespan updates all prices", () => {
+test("toggling timespan call callback", () => {
+  const onTimespanChange = jest.fn();
   render(
     <StepContextProvider>
-      <SelectPlan />
+      <SelectPlan
+        timespan={monthlyTimespan}
+        onTimespanChange={onTimespanChange}
+      />
     </StepContextProvider>
   );
-  const monthly = getTimespanByCode("MONTH");
+
+  const buttonElement = screen.getByRole("button");
+  fireEvent.click(buttonElement);
+  expect(onTimespanChange).toBeCalledWith("YEAR");
+});
+
+test("toggling timespan updates all prices", () => {
+  const onTimespanChange = jest.fn();
+
+  render(
+    <StepContextProvider>
+      <SelectPlan
+        timespan={monthlyTimespan}
+        onTimespanChange={onTimespanChange}
+      />
+    </StepContextProvider>
+  );
   PLANS.forEach((plan) => {
-    const priceDisplay = getPriceDisplay(plan, monthly);
+    const priceDisplay = getPriceDisplay(plan, monthlyTimespan);
     const priceElement = screen.getByText(priceDisplay);
     expect(priceElement).toBeInTheDocument();
   });
 
-  const buttonElement = screen.getByRole("button");
-  fireEvent.click(buttonElement);
-
-  const yearly = getTimespanByCode("YEAR");
+  render(
+    <StepContextProvider>
+      <SelectPlan
+        timespan={yearlyTimespan}
+        onTimespanChange={onTimespanChange}
+      />
+    </StepContextProvider>
+  );
   PLANS.forEach((plan) => {
-    const priceDisplay = getPriceDisplay(plan, yearly);
+    const priceDisplay = getPriceDisplay(plan, yearlyTimespan);
     const priceElement = screen.getByText(priceDisplay);
     expect(priceElement).toBeInTheDocument();
   });
@@ -106,11 +118,23 @@ test("selecting a plan calls setStepFieldState on StepContext", () => {
   const testStepStates = [
     {
       code: stepCode,
-      fieldStates: [{ code: "selected_plan", value: "fred", isValid: true }],
+      fieldStates: [
+        {
+          code: "selected_plan",
+          value: "fred",
+          isValid: true,
+          isInitialised: true,
+        },
+      ],
     },
   ];
   const mockGetStepFieldState = jest.fn((stepCode, fieldCode) => {
-    return { code: "code", value: "value", isValid: "isValid" };
+    return {
+      code: "code",
+      value: "value",
+      isValid: true,
+      isInitilialised: true,
+    };
   });
   const mockSetStepFieldState = jest.fn();
   const mockIsStepValid = jest.fn();
@@ -132,7 +156,7 @@ test("selecting a plan calls setStepFieldState on StepContext", () => {
 
   const { container } = render(
     <MockStepContextProvider>
-      <SelectPlan />
+      <SelectPlan timespan={monthlyTimespan} onTimespanChange={null} />
     </MockStepContextProvider>
   );
 
