@@ -7,19 +7,31 @@ import StepContextProvider from "../context/step-context";
 import { PLANS } from "../utils/plans";
 
 test("initially renders PersonalInfo", () => {
-  render(<PageContainer />);
+  render(
+    <StepContextProvider>
+      <PageContainer />
+    </StepContextProvider>
+  );
   const nameInput = screen.getByPlaceholderText("e.g. Stephen King");
   expect(nameInput).toBeInTheDocument();
 });
 
 test("initially back button is hidden", () => {
-  render(<PageContainer />);
+  render(
+    <StepContextProvider>
+      <PageContainer />
+    </StepContextProvider>
+  );
   const backButtonElement = screen.getByText("Go back");
   expect(backButtonElement).not.toHaveClass("btn-back--visible");
 });
 
 test("initially fwd button is disabled", () => {
-  render(<PageContainer />);
+  render(
+    <StepContextProvider>
+      <PageContainer />
+    </StepContextProvider>
+  );
   const fwdButtonElement = screen.getByText("Next step");
   expect(fwdButtonElement).toHaveAttribute("disabled");
 });
@@ -30,15 +42,15 @@ function enterValidPersonalInfo() {
   fireEvent.change(nameInputElement, { target: { value: validName } });
   fireEvent.blur(nameInputElement);
 
-  const validEmail = "stephenking@lorem.com";
+  const validEmail = "stephenking@gmail.com";
   const emailInputElement = screen.getByPlaceholderText(
-    "e.g. stephenking@lorem.com"
+    "e.g. stephenking@gmail.com"
   );
   fireEvent.change(emailInputElement, { target: { value: validEmail } });
   fireEvent.blur(emailInputElement);
 
-  const validPhone = "1234567890";
-  const phoneInputElement = screen.getByPlaceholderText("e.g. +1 234 567 890");
+  const validPhone = "0123456789";
+  const phoneInputElement = screen.getByPlaceholderText("e.g. 0123456789");
   fireEvent.change(phoneInputElement, { target: { value: validPhone } });
   fireEvent.blur(phoneInputElement);
 }

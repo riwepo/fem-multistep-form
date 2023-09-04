@@ -12,7 +12,7 @@ test("should return error string from invalid email", () => {
 
 test("should return error string from blank email", () => {
   const errorMessage = validateEmail("");
-  expect(errorMessage).toBe("Please enter a valid email");
+  expect(errorMessage).toBe("Please enter an email");
 });
 
 test("should return empty string from valid phone", () => {
@@ -27,7 +27,7 @@ test("should return error string from invalid phone", () => {
 
 test("should return error string from empty phone", () => {
   const errorMessage = validatePhone("");
-  expect(errorMessage).toEqual("Please enter a valid phone number");
+  expect(errorMessage).toEqual("Please enter a phone number");
 });
 
 test("should return empty string from valid name", () => {
@@ -42,5 +42,5 @@ test("should return error string from invalid name", () => {
 
 test("should return error string from blank name", () => {
   const errorMessage = validateName("");
-  expect(errorMessage).toEqual("Please enter a valid name");
+  expect(errorMessage).toEqual("Please enter a name");
 });
