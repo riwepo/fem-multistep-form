@@ -7,7 +7,7 @@ import { getPrice } from "../utils/utils";
 
 import "./AddOn.css";
 
-function AddOn({ addOn, timeSpan }) {
+function AddOn({ addOn, timespan }) {
   const [isActive, setIsActive] = useState(false);
   const clickHandler = () => {
     setIsActive((current) => !current);
@@ -22,8 +22,8 @@ function AddOn({ addOn, timeSpan }) {
           <p className="text-marine-blue">{addOn.name}</p>
           <p>{addOn.description}</p>
         </div>
-        <p className="text-purplish-blue">{`$${getPrice(addOn, timeSpan)}/${
-          timeSpan.display
+        <p className="text-purplish-blue">{`$${getPrice(addOn, timespan)}/${
+          timespan.display
         }`}</p>
       </div>
     </Card>
