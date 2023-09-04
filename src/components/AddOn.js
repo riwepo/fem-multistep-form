@@ -1,22 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
 import Card from "./Card";
 import Checkbox from "./Checkbox";
+
+import { StepContext } from "../context/step-context";
 
 import { getPriceDisplay } from "../utils/utils";
 
 import "./AddOn.css";
 
+const STEP_CODE = "PICK_ADD_ONS";
+
 function AddOn({ addOn, timespan }) {
   const [isActive, setIsActive] = useState(false);
+  const stepContext = useContext(StepContext);
+
   const clickHandler = () => {
     setIsActive((current) => !current);
+    stepContext.setStepFieldState(
+      STEP_CODE,
+      addOn.code,
+      (!isActive).toString(),
+      true
+    );
   };
   return (
     <Card
-      className={`card-add-on ${isActive ? "card-add-on--active" : undefined}`}
+      className={`add-on ${isActive ? "add-on--active" : undefined}`}
+      onClick={clickHandler}
     >
-      <div className="add-on flex" onClick={clickHandler}>
+      <div className="container flex">
         <Checkbox isActive={isActive} />
         <div>
           <p className="text-marine-blue">{addOn.name}</p>
