@@ -48,6 +48,15 @@ const displayAddOn = (addOnCode, timespan) => {
   );
 };
 
+const getTotalPriceDisplay = (stepContext, timespan) => {
+  const selectedPlan = getSelectedPlan(stepContext);
+  const selectedAddOnCodes = getSelectedAddOnCodes(stepContext);
+  const selectedAddOns = selectedAddOnCodes.map((code) => getAddOnByCode(code));
+  const items = [selectedPlan, ...selectedAddOns];
+  const totalPriceDisplay = getTotalPriceDisplay(items, timespan);
+  return totalPriceDisplay;
+};
+
 function FinishUp({ timespan, onGoToPlanClick }) {
   const stepContext = useContext(StepContext);
   const selectedPlan = getSelectedPlan(stepContext);
@@ -69,6 +78,12 @@ function FinishUp({ timespan, onGoToPlanClick }) {
           return displayAddOn(addOnCode, timespan);
         })}
       </Card>
+      <div className="total-container flex">
+        <p>{`Total (per ${timespan.code.toLowerCase()})`}</p>
+        <p className="fs-500 text-purplish-blue fw-bold">
+          {getTotalPriceDisplay(stepContext, timespan)}
+        </p>
+      </div>
     </StepCard>
   );
 }
