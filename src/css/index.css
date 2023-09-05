@@ -199,6 +199,10 @@
   line-height: 1.1;
 }
 
+.fw-bolder {
+  font-weight: bolder;
+}
+
 .fw-bold {
   font-weight: bold;
 }
