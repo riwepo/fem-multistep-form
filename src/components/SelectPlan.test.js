@@ -10,7 +10,7 @@ import { PLANS } from "../utils/plans";
 import { getPriceDisplay } from "../utils/utils";
 import { getTimespanByCode } from "../utils/timespans";
 
-const stepCode = "SELECT_PLAN";
+const STEP_CODE = "SELECT_PLAN";
 const monthlyTimespan = getTimespanByCode("MONTH");
 const yearlyTimespan = getTimespanByCode("YEAR");
 
@@ -117,7 +117,7 @@ test("toggling timespan updates all prices", () => {
 test("selecting a plan calls setStepFieldState on StepContext", () => {
   const testStepStates = [
     {
-      code: stepCode,
+      code: STEP_CODE,
       fieldStates: [
         {
           code: "selected_plan",
@@ -163,7 +163,7 @@ test("selecting a plan calls setStepFieldState on StepContext", () => {
   const planElement = container.querySelector(".plan"); // eslint-disable-line
   planElement && fireEvent.click(planElement);
   expect(mockSetStepFieldState).toBeCalledWith(
-    stepCode,
+    STEP_CODE,
     "selected_plan",
     "ARCADE",
     true
