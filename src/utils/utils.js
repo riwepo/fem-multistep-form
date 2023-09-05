@@ -12,6 +12,16 @@ export function getPriceDisplay(pricedItem, timespan) {
   return priceDisplay;
 }
 
+export function getTotalPriceDisplay(pricedItems, timespan) {
+  const prices = pricedItems.map((item) => getPrice(item, timespan));
+  const totalPrice = prices.reduce(
+    (partialSum, price) => partialSum + price,
+    0
+  );
+  const priceDisplay = `$${totalPrice}/${timespan.shortName}`;
+  return priceDisplay;
+}
+
 export function getIconFilepath(plan) {
   return `${process.env.PUBLIC_URL}/images/icon-${plan.name}.svg`;
 }

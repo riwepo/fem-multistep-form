@@ -3,6 +3,7 @@ import {
   getItemByCode,
   getPrice,
   getPriceDisplay,
+  getTotalPriceDisplay,
 } from "./utils";
 import { getPlanByCode } from "./plans";
 import { getTimespanByCode } from "./timespans";
@@ -48,6 +49,17 @@ test("get yearly price display from plan", () => {
   const yearly = getTimespanByCode("YEAR");
   const priceDisplay = getPriceDisplay(advanced, yearly);
   expect(priceDisplay).toBe("$120/yr");
+});
+
+test("get total price display from plan and addons", () => {
+  const advanced = getPlanByCode("ADVANCED"); //120
+  const online = getAddOnByCode("ONLINE"); //10
+  const storage = getAddOnByCode("STORAGE"); //10
+  const customizable = getAddOnByCode("CUSTOMIZABLE"); //10
+  const items = [advanced, online, storage, customizable];
+  const yearly = getTimespanByCode("YEAR");
+  const totalPriceDisplay = getTotalPriceDisplay(items, yearly);
+  expect(totalPriceDisplay).toBe("$150/yr");
 });
 
 test("get icon file path for pro plan", () => {
