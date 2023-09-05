@@ -8,7 +8,7 @@ export function getPrice(pricedItem, timespan) {
 
 export function getPriceDisplay(pricedItem, timespan) {
   const price = getPrice(pricedItem, timespan);
-  const priceDisplay = `$${price}/${timespan.display}`;
+  const priceDisplay = `$${price}/${timespan.shortName}`;
   return priceDisplay;
 }
 
