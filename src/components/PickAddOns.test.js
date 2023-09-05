@@ -193,5 +193,59 @@ test("clicking second time on add-on clears value in StepContext", () => {
   );
 });
 
-// TODO
-// selected add ons should be stored in the context and restored on back
+test("on initial render add-ons selected set from StepContext", () => {
+  const testStepStates = [
+    {
+      code: STEP_CODE,
+      fieldStates: [
+        {
+          code: "ONLINE",
+          value: "false",
+          isValid: true,
+          isInitialised: true,
+        },
+      ],
+    },
+  ];
+  const mockGetStepFieldState = jest.fn((stepCode, fieldCode) => {
+    return {
+      code: "ONLINE",
+      value: true.toString(),
+      isValid: true,
+      isInitilialised: true,
+    };
+  });
+  const mockSetStepFieldState = jest.fn();
+  const mockIsStepValid = jest.fn();
+
+  function MockStepContextProvider({ children }) {
+    return (
+      <StepContext.Provider
+        value={{
+          stepStates: testStepStates,
+          getStepFieldState: mockGetStepFieldState,
+          setStepFieldState: mockSetStepFieldState,
+          isStepValid: mockIsStepValid,
+        }}
+      >
+        {children}
+      </StepContext.Provider>
+    );
+  }
+
+  render(
+    <MockStepContextProvider>
+      <PickAddOns timespan={monthlyTimespan} />
+    </MockStepContextProvider>
+  );
+
+  const checkmarkImageElements = screen.getAllByRole("img");
+  const checkmarkImageElementsArray = [...checkmarkImageElements];
+  const firstCheckmarkImageElement = checkmarkImageElementsArray[0];
+  const divElement = firstCheckmarkImageElement.closest("div"); // eslint-disable-line
+  expect(divElement).toHaveAttribute("aria-selected", "true");
+});
+
+// test("step should be valid regardless of add-ons picked", () => {
+//   throw new Error("not sure how to test this");
+// });
