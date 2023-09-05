@@ -9,7 +9,7 @@ const defaultStepStates = STEPS.map((step) => ({
   fieldStates: step.fieldCodes.map((code) => ({
     code: code,
     value: "",
-    isValid: false,
+    isValid: step.defaultFieldValid,
     isInitialised: false,
   })),
 }));
@@ -29,8 +29,8 @@ export default function StepContextProvider({ children }) {
 
   const _getStepFieldState = (stepCode, fieldCode) => {
     const step = getItemByCode(stepStates, stepCode);
-    const field = getItemByCode(step.fieldStates, fieldCode);
-    return field;
+    const fieldState = getItemByCode(step.fieldStates, fieldCode);
+    return fieldState;
   };
 
   const _setStepFieldState = (stepCode, fieldCode, fieldValue, isValid) => {
