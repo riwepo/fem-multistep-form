@@ -1,3 +1,8 @@
+.finish-up .container {
+  width: 100%;
+  padding: 1rem 2rem;
+}
+
 .finish-up button {
   border: none;
   background-color: transparent;
@@ -12,8 +17,12 @@
 
 .finish-up .plan-container {
   justify-content: space-between;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid hsl(var(--clr-purplish-blue));
+  background-color: red;
 }
 
 .finish-up .add-on-container {
   justify-content: space-between;
+  padding-top: 1rem;
 }
