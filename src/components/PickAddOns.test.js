@@ -24,7 +24,8 @@ test.each(ADD_ONS)("render addOn name %p", (addOn) => {
 });
 
 test.each(ADD_ONS)("render addOn monthly price %p", (addOn) => {
-  const monthlyPriceDisplay = getPriceDisplay(ADD_ONS[0], monthlyTimespan);
+  const monthlyPriceDisplay =
+    "+" + getPriceDisplay(ADD_ONS[0], monthlyTimespan);
   render(
     <StepContextProvider>
       <PickAddOns timespan={monthlyTimespan} />
@@ -35,7 +36,7 @@ test.each(ADD_ONS)("render addOn monthly price %p", (addOn) => {
 });
 
 test.each(ADD_ONS)("render addOn yearly price %p", (addOn) => {
-  const yearlyPriceDisplay = getPriceDisplay(ADD_ONS[0], yearlyTimespan);
+  const yearlyPriceDisplay = "+" + getPriceDisplay(ADD_ONS[0], yearlyTimespan);
   render(
     <StepContextProvider>
       <PickAddOns timespan={yearlyTimespan} />
