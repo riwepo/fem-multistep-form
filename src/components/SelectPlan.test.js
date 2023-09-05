@@ -66,7 +66,7 @@ test("clicking on plan actvates it", () => {
   expect(activeDivCount).toBe(1);
 });
 
-test("toggling timespan call callback", () => {
+test("toggling timespan calls callback", () => {
   const onTimespanChange = jest.fn();
   render(
     <StepContextProvider>
