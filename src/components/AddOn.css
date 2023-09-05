@@ -1,15 +1,14 @@
 .add-on {
-  border: none;
+  border: solid 3px hsl(var(--clr-white));
 }
 
 .add-on:hover,
 .add-on:focus {
-  border: solid 3px hsl(var(--clr-purplish-blue));
+  border-color: hsl(var(--clr-purplish-blue));
 }
 
 .add-on.add-on--active {
-  border: none;
-  border: solid 3px hsl(var(--clr-purplish-blue));
+  border-color: hsl(var(--clr-purplish-blue));
 }
 
 .add-on .container {
