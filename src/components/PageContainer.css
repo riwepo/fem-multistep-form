@@ -25,6 +25,7 @@
 .page-container .step-control {
   grid-area: step;
   width: 100%;
+  height: auto;
   background-color: hsl(var(--clr-white));
 }
 

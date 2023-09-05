@@ -1,0 +1,19 @@
+.finish-up button {
+  border: none;
+  background-color: transparent;
+  text-decoration: underline;
+  color: hsl(var(--clr-purplish-blue));
+}
+
+.finish-up button:hover,
+.finish-up button:focus {
+  cursor: pointer;
+}
+
+.finish-up .plan-container {
+  justify-content: space-between;
+}
+
+.finish-up .add-on-container {
+  justify-content: space-between;
+}

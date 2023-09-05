@@ -8,9 +8,10 @@ import { StepContext } from "../context/step-context";
 import { ADD_ONS, getAddOnByCode } from "../utils/addOns";
 import { getStepByCode } from "../utils/steps";
 
-import "./PickAddOns.css";
 import { getPlanByCode } from "../utils/plans";
 import { getPriceDisplay } from "../utils/utils";
+
+import "./FinishUp.css";
 
 const STEP_CODE = "FINISH_UP";
 
@@ -40,14 +41,14 @@ const finishUpStep = getStepByCode(STEP_CODE);
 const displayAddOn = (addOnCode, timespan) => {
   const addOn = getAddOnByCode(addOnCode);
   return (
-    <div key={addOn.id} className="flex">
+    <div key={addOn.id} className="add-on-container flex">
       <p>{addOn.name}</p>
       <p className="fw-bolder">+{getPriceDisplay(addOn, timespan)}</p>
     </div>
   );
 };
 
-function FinishUp({ timespan }) {
+function FinishUp({ timespan, onGoToPlanClick }) {
   const stepContext = useContext(StepContext);
   const selectedPlan = getSelectedPlan(stepContext);
   const selectedAddOnCodes = getSelectedAddOnCodes(stepContext);
@@ -55,8 +56,11 @@ function FinishUp({ timespan }) {
   return (
     <StepCard className="finish-up" stepInfo={finishUpStep}>
       <Card className="container bg-light-gray text-marine-blue" onClick={null}>
-        <div className="flex">
-          <p className="fs-400 fw-bold text-marine-blue capitalize">{`${selectedPlan.name} (${timespan.name})`}</p>
+        <div className="plan-container flex">
+          <div>
+            <p className="fs-400 fw-bold text-marine-blue capitalize">{`${selectedPlan.name} (${timespan.name})`}</p>
+            <button onClick={onGoToPlanClick}>Change</button>
+          </div>
           <p className="fs-400 fw-bold text-marine-blue">
             {getPriceDisplay(selectedPlan, timespan)}
           </p>

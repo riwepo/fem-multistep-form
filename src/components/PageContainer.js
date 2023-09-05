@@ -48,6 +48,11 @@ function PageContainer() {
     setActiveTimespanCode(timespanCode);
   };
 
+  const goToPlanHandler = () => {
+    console.log("goToPlanHandler");
+    setActiveStepCode("SELECT_PLAN");
+  };
+
   const activeTimespan = getTimespanByCode(activeTimespanCode);
 
   return (
@@ -65,7 +70,9 @@ function PageContainer() {
       {activeStepCode === "PICK_ADD_ONS" && (
         <PickAddOns timespan={activeTimespan} />
       )}
-      {activeStepCode === "FINISH_UP" && <FinishUp timespan={activeTimespan} />}
+      {activeStepCode === "FINISH_UP" && (
+        <FinishUp timespan={activeTimespan} onGoToPlanClick={goToPlanHandler} />
+      )}
       <StepControl
         canGoBack={!isFirstStep}
         isValid={isStepValid}
