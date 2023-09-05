@@ -41,7 +41,9 @@ function AddOn({ addOn, timespan }) {
           <p className="text-marine-blue">{addOn.name}</p>
           <p>{addOn.description}</p>
         </div>
-        <p className="text-purplish-blue">{getPriceDisplay(addOn, timespan)}</p>
+        <p className="text-purplish-blue">
+          +{getPriceDisplay(addOn, timespan)}
+        </p>
       </div>
     </Card>
   );

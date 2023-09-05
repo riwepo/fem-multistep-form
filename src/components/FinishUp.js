@@ -42,7 +42,7 @@ const displayAddOn = (addOnCode, timespan) => {
   return (
     <div key={addOn.id} className="flex">
       <p>{addOn.name}</p>
-      <p className="fw-bolder">{getPriceDisplay(addOn, timespan)}</p>
+      <p className="fw-bolder">+{getPriceDisplay(addOn, timespan)}</p>
     </div>
   );
 };
