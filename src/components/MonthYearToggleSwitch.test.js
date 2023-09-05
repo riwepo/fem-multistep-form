@@ -60,7 +60,7 @@ test("after click on toggle, onTimespanChange is called", () => {
 
   render(
     <MonthYearToggleSwitch
-      activeTimespan={yearlyTimespan}
+      activeTimespan={monthlyTimespan}
       onTimespanChange={onTimespanChange}
     />
   );
