@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 
 import Card from "./Card";
 import Checkbox from "./Checkbox";
@@ -14,6 +14,12 @@ const STEP_CODE = "PICK_ADD_ONS";
 function AddOn({ addOn, timespan }) {
   const [isActive, setIsActive] = useState(false);
   const stepContext = useContext(StepContext);
+
+  // on first render, set state of form from the context
+  useEffect(() => {
+    const stepFieldState = stepContext.getStepFieldState(STEP_CODE, addOn.code);
+    setIsActive(stepFieldState.value === true.toString());
+  }, []);
 
   const clickHandler = () => {
     setIsActive((current) => !current);
