@@ -19,10 +19,16 @@
   justify-content: space-between;
   padding-bottom: 1rem;
   border-bottom: 1px solid hsl(var(--clr-purplish-blue));
-  background-color: red;
 }
 
 .finish-up .add-on-container {
   justify-content: space-between;
+  padding-top: 1rem;
+}
+
+.finish-up .total-container {
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 2rem;
   padding-top: 1rem;
 }
