@@ -33,7 +33,7 @@ function SelectPlan({ timespan, onTimespanChange }) {
   };
 
   const timespanChangeHandler = (isToggleActive) => {
-    const newTimeSpanCode = isToggleActive ? "MONTH" : "YEAR";
+    const newTimeSpanCode = isToggleActive ? "YEAR" : "MONTH";
     onTimespanChange(newTimeSpanCode);
   };
 
