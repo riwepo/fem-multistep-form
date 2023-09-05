@@ -39,23 +39,29 @@ test("hasNextStep on second last step returns true", () => {
 });
 
 test("getPrevStep on first step throws", () => {
+  const firstStepCode = STEPS[0].code;
   expect(() => {
-    getPrevStep("PERSONAL_INFO");
-  }).toThrow("invalid prev step PERSONAL_INFO");
+    getPrevStep(firstStepCode);
+  }).toThrow(`invalid prev step ${firstStepCode}`);
 });
 
-test("getPrevStep on second step returns step", () => {
-  const step = getPrevStep("SELECT_PLAN");
-  expect(step.code).toBe("PERSONAL_INFO");
+test("getPrevStep on second step returns first step", () => {
+  const firstStepCode = STEPS[0].code;
+  const secondStepCode = STEPS[1].code;
+  const step = getPrevStep(secondStepCode);
+  expect(step.code).toBe(firstStepCode);
 });
 
 test("getNextStep on last step throws", () => {
+  const lastStepCode = STEPS[STEPS.length - 1].code;
   expect(() => {
-    getNextStep("PICK_ADD_ONS");
-  }).toThrow("invalid next step PICK_ADD_ONS");
+    getNextStep(lastStepCode);
+  }).toThrow(`invalid next step ${lastStepCode}`);
 });
 
-test("getNextStep on second last step returns step", () => {
-  const step = getNextStep("SELECT_PLAN");
-  expect(step.code).toBe("PICK_ADD_ONS");
+test("getNextStep on second last step returns last step", () => {
+  const secondLastStepCode = STEPS[STEPS.length - 2].code;
+  const lastStepCode = STEPS[STEPS.length - 1].code;
+  const step = getNextStep(secondLastStepCode);
+  expect(step.code).toBe(lastStepCode);
 });
