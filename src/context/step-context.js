@@ -24,6 +24,11 @@ const defaultStepStates = {
     isValid: true,
     isInitialised: false,
   },
+  FINISH_UP: {
+    state: null,
+    isValid: true,
+    isInitialised: false,
+  },
 };
 
 export const StepContext = React.createContext({
