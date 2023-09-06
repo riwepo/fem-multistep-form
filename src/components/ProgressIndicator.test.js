@@ -7,14 +7,17 @@ import ProgressIndicator from "./ProgressIndicator";
 import { STEPS } from "../utils/steps";
 
 describe("progress indicator test suite", () => {
-  test.each(STEPS)("render step %p", (step) => {
-    render(<ProgressIndicator steps={STEPS} activeStepCode={step.code} />);
+  const stepsShown = STEPS.filter((step) => step.showInProgress);
+  test.each(stepsShown)("render step %p", (step) => {
+    render(<ProgressIndicator steps={STEPS} activeStepNumber={step.number} />);
     const stepTitleElement = screen.getByText(step.title);
     expect(stepTitleElement).toBeInTheDocument();
   });
 
   test("first step marked active", () => {
-    render(<ProgressIndicator steps={STEPS} activeStepCode={STEPS[0].code} />);
+    render(
+      <ProgressIndicator steps={STEPS} activeStepNumber={STEPS[0].number} />
+    );
     const step1Element = screen.getByText(STEPS[0].number);
     const step2Element = screen.getByText(STEPS[1].number);
     const step3Element = screen.getByText(STEPS[2].number);
@@ -24,7 +27,9 @@ describe("progress indicator test suite", () => {
   });
 
   test("second step marked active", () => {
-    render(<ProgressIndicator steps={STEPS} activeStepCode={STEPS[1].code} />);
+    render(
+      <ProgressIndicator steps={STEPS} activeStepNumber={STEPS[1].number} />
+    );
     const step1Element = screen.getByText(STEPS[0].number);
     const step2Element = screen.getByText(STEPS[1].number);
     const step3Element = screen.getByText(STEPS[2].number);
