@@ -60,6 +60,7 @@ export default function StepContextProvider({ children }) {
         currentStepStates.PERSONAL_INFO.state,
         newFieldState
       );
+
       const newStepStates = {
         ...currentStepStates,
         PERSONAL_INFO: {
@@ -68,6 +69,7 @@ export default function StepContextProvider({ children }) {
           isInitialised: true,
         },
       };
+
       return newStepStates;
     });
   };

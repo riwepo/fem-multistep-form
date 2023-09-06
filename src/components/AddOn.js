@@ -9,12 +9,16 @@ import { getPriceDisplay } from "../utils/utils";
 
 import "./AddOn.css";
 
+const STEP_CODE = "PICK_ADD_ONS";
+
 function AddOn({ addOn, timespan }) {
   const [isActive, setIsActive] = useState(false);
   const stepContext = useContext(StepContext);
 
   // on first render, set state of form from the context
   useEffect(() => {
+    const isStepInitialised = stepContext.isStepInitialised(STEP_CODE);
+    if (!isStepInitialised) return;
     const addOnState = stepContext.getAddOn(addOn.code);
     setIsActive(addOnState.isSelected);
   }, []);

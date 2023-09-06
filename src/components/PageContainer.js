@@ -49,7 +49,6 @@ function PageContainer() {
   };
 
   const goToPlanHandler = () => {
-    console.log("goToPlanHandler");
     setActiveStepCode("SELECT_PLAN");
   };
 

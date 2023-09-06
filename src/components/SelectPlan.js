@@ -15,21 +15,19 @@ const STEP_CODE = "SELECT_PLAN";
 
 function SelectPlan({ timespan, onTimespanChange }) {
   const stepContext = useContext(StepContext);
-  const [selectedPlan, setSelectedPlan] = useState();
+  const [selectedPlanCode, setSelectedPlanCode] = useState();
 
   // on first render, set state of form from the context
   useEffect(() => {
-    const stepFieldState = stepContext.getStepFieldState(
-      STEP_CODE,
-      "selected_plan"
-    );
-    const _selectedPlan = stepFieldState.value;
-    setSelectedPlan(_selectedPlan);
+    const isStepInitialised = stepContext.isStepInitialised(STEP_CODE);
+    if (!isStepInitialised) return;
+    const selectedPlanCode = stepContext.getSelectedPlanCode();
+    setSelectedPlanCode(selectedPlanCode);
   }, []);
 
   const activateHandler = (planCode) => {
-    setSelectedPlan(planCode);
-    stepContext.setStepFieldState(STEP_CODE, "selected_plan", planCode, true);
+    setSelectedPlanCode(planCode);
+    stepContext.setSelectedPlanCode(planCode);
   };
 
   const timespanChangeHandler = (isToggleActive) => {
@@ -47,7 +45,7 @@ function SelectPlan({ timespan, onTimespanChange }) {
             key={plan.id}
             plan={plan}
             timeSpan={timespan}
-            isActive={selectedPlan === plan.code}
+            isActive={selectedPlanCode === plan.code}
             onActivated={activateHandler}
           />
         );

@@ -14,9 +14,10 @@ function PersonalInfoField({ type, id, label, placeholder, validator }) {
   // this will run when the component is mounted
   // restore values from StepContext
   useEffect(() => {
-    const stepFieldState = stepContext.getStepFieldState(STEP_CODE, id);
-    if (!stepFieldState.isInitialised) return; // don't validate first time page loads
-    const localValue = stepFieldState.value;
+    const isStepInitialised = stepContext.isStepInitialised(STEP_CODE);
+    if (!isStepInitialised) return; // don't restore values if they have never been set
+    const infoFieldState = stepContext.getPersonalInfoField(id);
+    const localValue = infoFieldState.value;
     setEnteredValue(localValue);
     setErrorMessage(validator(localValue));
   }, []);
@@ -30,12 +31,7 @@ function PersonalInfoField({ type, id, label, placeholder, validator }) {
     const localValue = event.target.value.trim();
     const errorMessage = validator(localValue);
     setErrorMessage(errorMessage);
-    stepContext.setStepFieldState(
-      STEP_CODE,
-      id,
-      enteredValue,
-      errorMessage === ""
-    );
+    stepContext.setPersonalInfoField(id, enteredValue, errorMessage === "");
   };
 
   return (

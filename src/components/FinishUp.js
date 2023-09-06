@@ -9,30 +9,26 @@ import { ADD_ONS, getAddOnByCode } from "../utils/addOns";
 import { getStepByCode } from "../utils/steps";
 
 import { getPlanByCode } from "../utils/plans";
-import { getPriceDisplay } from "../utils/utils";
+import { getPriceDisplay, getTotalPriceDisplay } from "../utils/utils";
 
 import "./FinishUp.css";
 
 const STEP_CODE = "FINISH_UP";
 
 const getSelectedPlan = (stepContext) => {
-  const selectedPlanFieldState = stepContext.getStepFieldState(
-    "SELECT_PLAN",
-    "selected_plan"
-  );
-  const selectedPlanCode = selectedPlanFieldState.value;
+  const selectedPlanCode = stepContext.getSelectedPlanCode();
   const selectedPlan = getPlanByCode(selectedPlanCode);
   return selectedPlan;
 };
 
 const getSelectedAddOnCodes = (stepContext) => {
-  const addOnFieldStates = ADD_ONS.map((addOn) => {
-    return stepContext.getStepFieldState("PICK_ADD_ONS", addOn.code);
+  const addOnStates = ADD_ONS.map((addOn) => {
+    return stepContext.getAddOn(addOn.code);
   });
-  const selectedAddOnFields = addOnFieldStates.filter(
-    (addOn) => addOn.value === true.toString()
+  const selectedAddOns = addOnStates.filter((addOn) => addOn.isSelected);
+  const selectedAddOnCodes = selectedAddOns.map(
+    (addOnState) => addOnState.code
   );
-  const selectedAddOnCodes = selectedAddOnFields.map((field) => field.code);
   return selectedAddOnCodes;
 };
 
@@ -48,7 +44,7 @@ const displayAddOn = (addOnCode, timespan) => {
   );
 };
 
-const getTotalPriceDisplay = (stepContext, timespan) => {
+const getTotalPriceDisplayFromContext = (stepContext, timespan) => {
   const selectedPlan = getSelectedPlan(stepContext);
   const selectedAddOnCodes = getSelectedAddOnCodes(stepContext);
   const selectedAddOns = selectedAddOnCodes.map((code) => getAddOnByCode(code));
@@ -81,7 +77,7 @@ function FinishUp({ timespan, onGoToPlanClick }) {
       <div className="total-container flex">
         <p>{`Total (per ${timespan.code.toLowerCase()})`}</p>
         <p className="fs-500 text-purplish-blue fw-bold">
-          {getTotalPriceDisplay(stepContext, timespan)}
+          {getTotalPriceDisplayFromContext(stepContext, timespan)}
         </p>
       </div>
     </StepCard>
