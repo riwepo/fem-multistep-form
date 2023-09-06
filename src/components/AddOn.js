@@ -9,26 +9,19 @@ import { getPriceDisplay } from "../utils/utils";
 
 import "./AddOn.css";
 
-const STEP_CODE = "PICK_ADD_ONS";
-
 function AddOn({ addOn, timespan }) {
   const [isActive, setIsActive] = useState(false);
   const stepContext = useContext(StepContext);
 
   // on first render, set state of form from the context
   useEffect(() => {
-    const stepFieldState = stepContext.getStepFieldState(STEP_CODE, addOn.code);
-    setIsActive(stepFieldState.value === true.toString());
+    const addOnState = stepContext.getAddOn(addOn.code);
+    setIsActive(addOnState.isSelected);
   }, []);
 
   const clickHandler = () => {
     setIsActive((current) => !current);
-    stepContext.setStepFieldState(
-      STEP_CODE,
-      addOn.code,
-      (!isActive).toString(),
-      true
-    );
+    stepContext.selectAddOn(addOn.code, !isActive);
   };
   return (
     <Card

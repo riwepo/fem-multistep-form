@@ -6,7 +6,8 @@ import { getAddOnByCode } from "../utils/addOns";
 import { getTimespanByCode } from "../utils/timespans";
 import StepContextProvider, { StepContext } from "../context/step-context";
 
-const STEP_CODE = "PICK_ADD_ONS";
+import { nullStepContext } from "../context/step-context.test";
+
 const monthlyTimespan = getTimespanByCode("MONTH");
 const onlineAddOn = getAddOnByCode("ONLINE");
 
@@ -50,40 +51,12 @@ test("after click div surrounding img has aria-selected true", () => {
 });
 
 test("initial state of selected is set from context", () => {
-  const testStepStates = [
-    {
-      code: STEP_CODE,
-      fieldStates: [
-        {
-          code: "ONLINE",
-          value: "false",
-          isValid: true,
-          isInitialised: true,
-        },
-      ],
-    },
-  ];
-  const mockGetStepFieldState = jest.fn((stepCode, fieldCode) => {
-    return {
-      code: "ONLINE",
-      value: true.toString(),
-      isValid: true,
-      isInitilialised: true,
-    };
-  });
-  const mockSetStepFieldState = jest.fn();
-  const mockIsStepValid = jest.fn();
+  const mockGetAddOn = jest.fn((code) => ({ isSelected: true }));
+  const mockStepContext = { ...nullStepContext, getAddOn: mockGetAddOn };
 
   function MockStepContextProvider({ children }) {
     return (
-      <StepContext.Provider
-        value={{
-          stepStates: testStepStates,
-          getStepFieldState: mockGetStepFieldState,
-          setStepFieldState: mockSetStepFieldState,
-          isStepValid: mockIsStepValid,
-        }}
-      >
+      <StepContext.Provider value={mockStepContext}>
         {children}
       </StepContext.Provider>
     );
