@@ -15,10 +15,12 @@ import {
   getPrevStep,
   hasNextStep,
   getNextStep,
+  getStepByCode,
 } from "../utils/steps";
 import { TIME_SPANS, getTimespanByCode } from "../utils/timespans";
 
 import "./PageContainer.css";
+import ThankYou from "./ThankYou";
 
 function PageContainer() {
   const [activeStepCode, setActiveStepCode] = useState(STEPS[0].code);
@@ -28,7 +30,6 @@ function PageContainer() {
   const stepContext = useContext(StepContext);
   const isStepValid = stepContext.isStepValid(activeStepCode);
   const isFirstStep = !hasPrevStep(activeStepCode);
-  const isLastStep = !hasNextStep(activeStepCode);
 
   const backClickHandler = () => {
     if (hasPrevStep(activeStepCode)) {
@@ -53,11 +54,12 @@ function PageContainer() {
   };
 
   const activeTimespan = getTimespanByCode(activeTimespanCode);
+  const activeStep = getStepByCode(activeStepCode);
 
   return (
     <div className="page-container grid">
       <div className="progress-container">
-        <ProgressIndicator steps={STEPS} activeStepCode={activeStepCode} />
+        <ProgressIndicator steps={STEPS} activeStepNumber={activeStep.number} />
       </div>
       {activeStepCode === "PERSONAL_INFO" && <PersonalInfo />}
       {activeStepCode === "SELECT_PLAN" && (
@@ -72,13 +74,16 @@ function PageContainer() {
       {activeStepCode === "FINISH_UP" && (
         <FinishUp timespan={activeTimespan} onGoToPlanClick={goToPlanHandler} />
       )}
-      <StepControl
-        canGoBack={!isFirstStep}
-        isValid={isStepValid}
-        isLastStep={isLastStep}
-        onBackClicked={backClickHandler}
-        onFwdClicked={fwdClickHandler}
-      />
+      {activeStepCode === "THANK_YOU" && <ThankYou />}
+      {activeStep.nextStep !== "NONE" && (
+        <StepControl
+          canGoBack={!isFirstStep}
+          isValid={isStepValid}
+          isConfirm={activeStep.nextStep === "CONFIRM"}
+          onBackClicked={backClickHandler}
+          onFwdClicked={fwdClickHandler}
+        />
+      )}
     </div>
   );
 }

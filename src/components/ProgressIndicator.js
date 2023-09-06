@@ -4,18 +4,20 @@ import ProgressStepIndicator from "./ProgressStepIndicator";
 
 import "./ProgressIndicator.css";
 
-function ProgressIndicator({ steps, activeStepCode }) {
+function ProgressIndicator({ steps, activeStepNumber }) {
   return (
     <ul className="progress-indicator flex">
-      {steps.map((step) => {
-        return (
-          <ProgressStepIndicator
-            key={step.id}
-            step={step}
-            isActive={step.code === activeStepCode}
-          />
-        );
-      })}
+      {steps
+        .filter((step) => step.showInProgress)
+        .map((step) => {
+          return (
+            <ProgressStepIndicator
+              key={step.id}
+              step={step}
+              isActive={step.number === activeStepNumber}
+            />
+          );
+        })}
     </ul>
   );
 }

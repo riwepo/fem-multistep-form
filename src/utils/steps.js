@@ -7,6 +7,8 @@ export const STEPS = [
     code: "PERSONAL_INFO",
     title: "Personal info",
     description: "Please provide your name, email address and phone number.",
+    showInProgress: true,
+    nextStep: "NEXT",
   },
   {
     id: 2,
@@ -14,6 +16,8 @@ export const STEPS = [
     code: "SELECT_PLAN",
     title: "Select your plan",
     description: "You have the option of monthly or yearly billing.",
+    showInProgress: true,
+    nextStep: "NEXT",
   },
   {
     id: 3,
@@ -21,6 +25,8 @@ export const STEPS = [
     code: "PICK_ADD_ONS",
     title: "Pick add-ons",
     description: "Add-ons help enhance your gaming experience.",
+    showInProgress: true,
+    nextStep: "NEXT",
   },
   {
     id: 4,
@@ -28,6 +34,17 @@ export const STEPS = [
     code: "FINISH_UP",
     title: "Finishing up",
     description: "Double check everything looks OK before confirming.",
+    showInProgress: true,
+    nextStep: "CONFIRM",
+  },
+  {
+    id: 5,
+    number: "4", // note 4 is deliberate
+    code: "THANK_YOU",
+    title: "not seen",
+    description: "not used",
+    showInProgress: false,
+    nextStep: "NONE",
   },
 ];
 
