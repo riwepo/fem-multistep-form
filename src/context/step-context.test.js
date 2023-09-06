@@ -9,6 +9,18 @@ import { FIELDS } from "../utils/personal_info";
 import { PLANS } from "../utils/plans";
 import { ADD_ONS } from "../utils/addOns";
 
+export const nullStepContext = {
+  stepStates: null,
+  setPersonalInfoField: null,
+  getPersonalInfoField: null,
+  setSelectedPlanCode: null,
+  getSelectedPlanCode: null,
+  selectAddOn: null,
+  getAddOn: null,
+  isStepInitialised: null,
+  isStepValid: null,
+};
+
 test.each(FIELDS)(
   "getPersonalInfoField returns default state for each field",
   (field) => {
