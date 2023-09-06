@@ -1,10 +1,9 @@
 import React, { useState } from "react";
+
 import ProgressIndicator from "./ProgressIndicator";
 import StepControl from "./StepControl";
 import Plan from "./Plan";
 import SelectPlan from "./SelectPlan";
-
-import "./DesignSystem.css";
 import ToggleSwitch from "./ToggleSwitch";
 import MonthYearToggleSwitch from "./MonthYearToggleSwitch";
 import AddOn from "./AddOn";
@@ -12,6 +11,8 @@ import Checkbox from "./Checkbox";
 import PersonalInfoField from "./PersonalInfoField";
 import PersonalInfo from "./PersonalInfo";
 import StepCard from "./StepCard";
+import ThankYou from "./ThankYou";
+
 import { getPlanByCode } from "../utils/plans";
 import { getAddOnByCode } from "../utils/addOns";
 import { getTimespanByCode } from "../utils/timespans";
@@ -22,20 +23,49 @@ import {
   validatePhone,
 } from "../utils/validators";
 
+import "./DesignSystem.css";
+
+const monthlyTimespan = getTimespanByCode("MONTH");
+const yearlyTimespan = getTimespanByCode("YEAR");
+
 function DesignSystem() {
   const [isToggleActive, setIsToggleActive] = useState(false);
   const [isPlanActive, setIsPlanActive] = useState(false);
 
   return (
     <div className="design-system grid">
-      {/* <div>
+      <div>
         <ProgressIndicator steps={STEPS} activeStepCode={STEPS[0].code} />
       </div>
       <div>
-        <StepControl canGoBack={false} isValid={true} isLastStep={false} />
-        <StepControl canGoBack={true} isValid={true} isLastStep={false} />
-        <StepControl canGoBack={true} isValid={true} isLastStep={true} />
-        <StepControl canGoBack={true} isValid={false} isLastStep={false} />
+        <StepControl
+          canGoBack={false}
+          isValid={true}
+          isLastStep={false}
+          onBackClicked={null}
+          onFwdClicked={null}
+        />
+        <StepControl
+          canGoBack={true}
+          isValid={true}
+          isLastStep={false}
+          onBackClicked={null}
+          onFwdClicked={null}
+        />
+        <StepControl
+          canGoBack={true}
+          isValid={true}
+          isLastStep={true}
+          onBackClicked={null}
+          onFwdClicked={null}
+        />
+        <StepControl
+          canGoBack={true}
+          isValid={false}
+          isLastStep={false}
+          onBackClicked={null}
+          onFwdClicked={null}
+        />
       </div>
       <div>
         <Plan
@@ -72,11 +102,11 @@ function DesignSystem() {
       <div>
         <AddOn
           addOn={getAddOnByCode("ONLINE")}
-          timeSpan={getTimespanByCode("MONTH")}
+          timespan={getTimespanByCode("MONTH")}
         />
         <AddOn
           addOn={getAddOnByCode("STORAGE")}
-          timeSpan={getTimespanByCode("YEAR")}
+          timespan={getTimespanByCode("YEAR")}
         />
       </div>
       <div>
@@ -103,14 +133,14 @@ function DesignSystem() {
         />
       </div>
       <div>
-        <StepCard stepInfo={STEPS[0]}>
+        <StepCard className={undefined} stepInfo={STEPS[0]}>
           <h1>step card content</h1>
         </StepCard>
-      </div> */}
+      </div>
       <div>
         <PersonalInfo />
       </div>
-      {/* <div>
+      <div>
         <Plan
           plan={getPlanByCode("ARCADE")}
           timeSpan={getTimespanByCode("MONTH")}
@@ -119,8 +149,11 @@ function DesignSystem() {
         />
       </div>
       <div>
-        <SelectPlan />
-      </div> */}
+        <SelectPlan timespan={monthlyTimespan} onTimespanChange={null} />
+      </div>
+      <div>
+        <ThankYou />
+      </div>
     </div>
   );
 }
