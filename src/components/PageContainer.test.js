@@ -5,6 +5,7 @@ import PageContainer from "./PageContainer";
 
 import StepContextProvider from "../context/step-context";
 import { PLANS } from "../utils/plans";
+import { ADD_ONS } from "../utils/addOns";
 
 describe("page container suite", () => {
   test("initially renders PersonalInfo", () => {
@@ -159,5 +160,186 @@ describe("page container suite", () => {
     const errorMessageElement = container.querySelector("p.error-message"); // eslint-disable-line
     expect(errorMessageElement).toBeInTheDocument();
     expect(errorMessageElement?.textContent).toEqual("");
+  });
+
+  test("when we arrive at select plan step, forward button is disabled", () => {
+    const { container } = render(
+      <StepContextProvider>
+        <PageContainer />
+      </StepContextProvider>
+    );
+
+    enterValidPersonalInfo();
+
+    const fwdButtonElement = screen.getByText("Next step");
+    expect(fwdButtonElement).not.toHaveAttribute("disabled");
+    fireEvent.click(fwdButtonElement);
+
+    expect(fwdButtonElement).toHaveAttribute("disabled");
+  });
+
+  test("when we select a plan step, forward button becomes enabled", () => {
+    const { container } = render(
+      <StepContextProvider>
+        <PageContainer />
+      </StepContextProvider>
+    );
+
+    enterValidPersonalInfo();
+
+    const fwdButtonElement = screen.getByText("Next step");
+    fireEvent.click(fwdButtonElement);
+    expect(fwdButtonElement).toHaveAttribute("disabled");
+
+    const planElement = container.querySelector(".plan"); // eslint-disable-line
+    planElement && fireEvent.click(planElement);
+
+    expect(fwdButtonElement).not.toHaveAttribute("disabled");
+  });
+
+  test("when we get to pick-addOns step, forward button is enabled", () => {
+    const { container } = render(
+      <StepContextProvider>
+        <PageContainer />
+      </StepContextProvider>
+    );
+
+    enterValidPersonalInfo();
+
+    const fwdButtonElement = screen.getByText("Next step");
+    fireEvent.click(fwdButtonElement);
+    expect(fwdButtonElement).toHaveAttribute("disabled");
+
+    const planElement = container.querySelector(".plan"); // eslint-disable-line
+    planElement && fireEvent.click(planElement);
+
+    expect(fwdButtonElement).not.toHaveAttribute("disabled");
+    fireEvent.click(fwdButtonElement);
+
+    expect(fwdButtonElement).not.toHaveAttribute("disabled");
+  });
+
+  test("when we get to finish-up step, forward button is enabled", () => {
+    const { container } = render(
+      <StepContextProvider>
+        <PageContainer />
+      </StepContextProvider>
+    );
+
+    enterValidPersonalInfo();
+
+    const fwdButtonElement = screen.getByText("Next step");
+    fireEvent.click(fwdButtonElement);
+    expect(fwdButtonElement).toHaveAttribute("disabled");
+
+    const planElement = container.querySelector(".plan"); // eslint-disable-line
+    planElement && fireEvent.click(planElement);
+
+    expect(fwdButtonElement).not.toHaveAttribute("disabled");
+    fireEvent.click(fwdButtonElement);
+
+    expect(fwdButtonElement).not.toHaveAttribute("disabled");
+    fireEvent.click(fwdButtonElement);
+
+    expect(fwdButtonElement).not.toHaveAttribute("disabled");
+  });
+
+  test("when we get to thank-you step, forward button is not shown", () => {
+    const { container } = render(
+      <StepContextProvider>
+        <PageContainer />
+      </StepContextProvider>
+    );
+
+    enterValidPersonalInfo();
+
+    const fwdButtonElement = screen.getByText("Next step");
+    fireEvent.click(fwdButtonElement);
+    expect(fwdButtonElement).toHaveAttribute("disabled");
+
+    // we are now in select plan
+    const planElement = container.querySelector(".plan"); // eslint-disable-line
+    expect(planElement).toBeInTheDocument();
+    planElement && fireEvent.click(planElement);
+    fireEvent.click(fwdButtonElement);
+
+    // we are now in pick add-ons
+    const addOnNameElement = screen.getByText(ADD_ONS[0].name);
+    expect(addOnNameElement).toBeInTheDocument();
+    expect(fwdButtonElement).not.toHaveAttribute("disabled");
+    fireEvent.click(fwdButtonElement);
+
+    // we are now in finish-up
+    expect(fwdButtonElement).not.toHaveAttribute("disabled");
+    fireEvent.click(fwdButtonElement);
+
+    // we are now in thank you
+    expect(fwdButtonElement).not.toBeInTheDocument();
+  });
+
+  test("when we get to finish-up step, progress indicator 4 is active", () => {
+    const { container } = render(
+      <StepContextProvider>
+        <PageContainer />
+      </StepContextProvider>
+    );
+
+    enterValidPersonalInfo();
+
+    const fwdButtonElement = screen.getByText("Next step");
+    fireEvent.click(fwdButtonElement);
+    expect(fwdButtonElement).toHaveAttribute("disabled");
+
+    // we are now in select plan
+    const planElement = container.querySelector(".plan"); // eslint-disable-line
+    expect(planElement).toBeInTheDocument();
+    planElement && fireEvent.click(planElement);
+    fireEvent.click(fwdButtonElement);
+
+    // we are now in pick add-ons
+    const addOnNameElement = screen.getByText(ADD_ONS[0].name);
+    expect(addOnNameElement).toBeInTheDocument();
+    expect(fwdButtonElement).not.toHaveAttribute("disabled");
+    fireEvent.click(fwdButtonElement);
+
+    // we are now in finish-up
+    const step4Element = screen.getByText("4");
+    expect(step4Element).toHaveClass("indicator--active");
+  });
+
+  test("when we get to thank-you step, progress indicator 4 is still active", () => {
+    const { container } = render(
+      <StepContextProvider>
+        <PageContainer />
+      </StepContextProvider>
+    );
+
+    enterValidPersonalInfo();
+
+    const fwdButtonElement = screen.getByText("Next step");
+    fireEvent.click(fwdButtonElement);
+    expect(fwdButtonElement).toHaveAttribute("disabled");
+
+    // we are now in select plan
+    const planElement = container.querySelector(".plan"); // eslint-disable-line
+    expect(planElement).toBeInTheDocument();
+    planElement && fireEvent.click(planElement);
+    fireEvent.click(fwdButtonElement);
+
+    // we are now in pick add-ons
+    const addOnNameElement = screen.getByText(ADD_ONS[0].name);
+    expect(addOnNameElement).toBeInTheDocument();
+    expect(fwdButtonElement).not.toHaveAttribute("disabled");
+    fireEvent.click(fwdButtonElement);
+
+    // we are now in finish-up
+    expect(fwdButtonElement).not.toHaveAttribute("disabled");
+    fireEvent.click(fwdButtonElement);
+
+    // we are now in thank you
+    const thankYouElement = screen.getByText("Thank you!");
+    expect(thankYouElement).toBeInTheDocument();
+    const step4Element = screen.getByText("4");
+    expect(step4Element).toHaveClass("indicator--active");
   });
 });
