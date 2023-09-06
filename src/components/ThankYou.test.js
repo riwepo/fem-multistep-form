@@ -22,10 +22,4 @@ describe("thank you test suite", () => {
     const imageElement = screen.getByRole("img");
     expect(imageElement).toBeInTheDocument();
   });
-  test("on step 4", () => {
-    throw new Error("not implemented");
-  });
-  test("no step control shown", () => {
-    throw new Error("not implemented");
-  });
 });
