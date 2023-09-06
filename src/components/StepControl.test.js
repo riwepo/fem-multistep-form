@@ -10,7 +10,7 @@ describe("step control test suite", () => {
       <StepControl
         canGoBack={true}
         isValid={true}
-        isLastStep={false}
+        isConfirm={false}
         onBackClicked={null}
         onFwdClicked={null}
       />
@@ -24,7 +24,7 @@ describe("step control test suite", () => {
       <StepControl
         canGoBack={false}
         isValid={true}
-        isLastStep={false}
+        isConfirm={false}
         onBackClicked={null}
         onFwdClicked={null}
       />
@@ -33,12 +33,12 @@ describe("step control test suite", () => {
     expect(backButtonElement).not.toHaveClass("btn-back--visible");
   });
 
-  test("not last page fwd button says 'Next step'", () => {
+  test("not confirm fwd button says 'Next step'", () => {
     render(
       <StepControl
         canGoBack={true}
         isValid={true}
-        isLastStep={false}
+        isConfirm={false}
         onBackClicked={null}
         onFwdClicked={null}
       />
@@ -47,12 +47,12 @@ describe("step control test suite", () => {
     expect(fwdButtonElement).toBeInTheDocument();
   });
 
-  test("last page fwd button says 'Confirm'", () => {
+  test("confirm fwd button says 'Confirm'", () => {
     render(
       <StepControl
         canGoBack={true}
         isValid={true}
-        isLastStep={true}
+        isConfirm={true}
         onBackClicked={null}
         onFwdClicked={null}
       />
@@ -66,7 +66,7 @@ describe("step control test suite", () => {
       <StepControl
         canGoBack={true}
         isValid={true}
-        isLastStep={false}
+        isConfirm={false}
         onBackClicked={null}
         onFwdClicked={null}
       />
@@ -80,7 +80,7 @@ describe("step control test suite", () => {
       <StepControl
         canGoBack={true}
         isValid={false}
-        isLastStep={false}
+        isConfirm={false}
         onBackClicked={null}
         onFwdClicked={null}
       />
@@ -96,7 +96,7 @@ describe("step control test suite", () => {
       <StepControl
         canGoBack={true}
         isValid={true}
-        isLastStep={false}
+        isConfirm={false}
         onBackClicked={onBackClicked}
         onFwdClicked={onFwdClicked}
       />
@@ -114,7 +114,7 @@ describe("step control test suite", () => {
       <StepControl
         canGoBack={true}
         isValid={true}
-        isLastStep={false}
+        isConfirm={false}
         onBackClicked={onBackClicked}
         onFwdClicked={onFwdClicked}
       />
