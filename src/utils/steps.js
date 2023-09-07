@@ -14,7 +14,7 @@ export const STEPS = [
     id: 2,
     number: "2",
     code: "SELECT_PLAN",
-    title: "Select your plan",
+    title: "Select plan",
     description: "You have the option of monthly or yearly billing.",
     showInProgress: true,
     nextStep: "NEXT",
