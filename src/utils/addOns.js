@@ -2,7 +2,7 @@ import { getItemByCode } from "./utils";
 
 export const ADD_ONS = [
   {
-    id: "1",
+    id: 1,
     code: "ONLINE",
     name: "Online service",
     description: "Access to multiplayer games",
@@ -10,7 +10,7 @@ export const ADD_ONS = [
     priceYear: 10,
   },
   {
-    id: "2",
+    id: 2,
     code: "STORAGE",
     name: "Larger storage",
     description: "Extra 1TB of cloud save",
@@ -18,7 +18,7 @@ export const ADD_ONS = [
     priceYear: 10,
   },
   {
-    id: "3",
+    id: 3,
     code: "CUSTOMIZABLE",
     name: "Customizable profile",
     description: "Custom theme on your profile",
