@@ -38,7 +38,11 @@ function SelectPlan({ timespan, onTimespanChange }) {
   const selectPlanStep = getStepByCode(STEP_CODE);
 
   return (
-    <StepCard className="select-plan" stepInfo={selectPlanStep}>
+    <StepCard
+      className="select-plan"
+      stepInfo={selectPlanStep}
+      autoFocus={false}
+    >
       {PLANS.map((plan) => {
         return (
           <Plan
@@ -46,6 +50,7 @@ function SelectPlan({ timespan, onTimespanChange }) {
             plan={plan}
             timeSpan={timespan}
             isActive={selectedPlanCode === plan.code}
+            autoFocus={plan.id === 1}
             onActivated={activateHandler}
           />
         );

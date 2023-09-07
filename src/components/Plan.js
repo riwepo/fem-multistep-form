@@ -6,13 +6,14 @@ import { getIconFilepath, getPriceDisplay } from "../utils/utils";
 
 import "./Plan.css";
 
-function Plan({ plan, timeSpan, isActive, onActivated }) {
+function Plan({ plan, timeSpan, isActive, autoFocus, onActivated }) {
   const clickHandler = (event) => {
     onActivated && onActivated(plan.code);
   };
   return (
     <Card
       className={`plan flex ${isActive ? "plan--active" : undefined}`}
+      autoFocus={autoFocus}
       onClick={clickHandler}
     >
       <img src={getIconFilepath(plan)} alt="plan icon" />
