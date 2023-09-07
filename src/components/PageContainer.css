@@ -32,7 +32,7 @@
   background-color: hsl(var(--clr-white));
 }
 
-@media (min-width: 720px) {
+@media (min-widthxxx: 720px) {
   .page-container {
     grid-template-areas:
       "progress child"

@@ -1,6 +1,7 @@
 .month-year-toggle-switch {
   background-color: hsl(var(--clr-light-blue));
   padding: 1rem 4rem;
+  margin: 0 2rem;
 }
 
 .month-year-toggle-switch .month-title {
