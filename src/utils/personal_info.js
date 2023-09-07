@@ -20,7 +20,7 @@ export const FIELDS = [
   {
     id: 3,
     code: "PHONE",
-    type: "phone",
+    type: "tel",
     label: "Phone Number",
     placeholder: "e.g. 0123456789",
     validator: validatePhone,
