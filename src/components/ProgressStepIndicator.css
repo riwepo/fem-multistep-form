@@ -25,7 +25,7 @@
   color: hsl(var(--clr-white) / 50%);
 }
 
-@media (min-widthxxx: 720px) {
+@media (min-width: 720px) {
   .progress-step-indicator .info {
     display: block;
   }

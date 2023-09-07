@@ -1,5 +1,11 @@
 .thank-you {
   flex-direction: column;
   align-items: center;
-  padding: 2rem;
+  padding: 4rem 2rem;
+}
+
+@media (min-width: 720px) {
+  .thank-you {
+    margin: auto 0;
+  }
 }

@@ -22,6 +22,8 @@
 
 .page-container .child-container {
   grid-area: child;
+  display: flex;
+  flex-direction: column;
   padding-inline: 2rem;
 }
 
@@ -32,8 +34,10 @@
   background-color: hsl(var(--clr-white));
 }
 
-@media (min-widthxxx: 720px) {
+@media (min-width: 720px) {
   .page-container {
+    grid-template-rows: 1fr auto;
+    height: 80rem;
     grid-template-areas:
       "progress child"
       "progress step";

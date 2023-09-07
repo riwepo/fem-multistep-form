@@ -7,7 +7,7 @@ import "./ThankYou.css";
 
 function ThankYou() {
   return (
-    <Card className="thank-you flex" onClick={null}>
+    <Card className="thank-you flex" onClick={null} autoFocus={false}>
       <img src={iconThankYou} alt="thank you icon" />
       <h1>Thank you!</h1>
       <p>

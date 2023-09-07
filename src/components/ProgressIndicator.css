@@ -3,7 +3,7 @@
   justify-content: center;
 }
 
-@media (min-widthxxx: 720px) {
+@media (min-width: 720px) {
   .progress-indicator {
     flex-direction: column;
     justify-content: flex-start;
