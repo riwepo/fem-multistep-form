@@ -15,7 +15,7 @@
   display: none;
   width: 4rem;
   aspect-ratio: 1;
-  padding: 1rem;
+  padding: 0.25rem;
 }
 .checkbox.checkbox.checkbox--active img {
   display: inline;

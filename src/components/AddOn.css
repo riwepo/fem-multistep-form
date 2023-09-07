@@ -12,6 +12,7 @@
 }
 
 .add-on .container {
+  justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
+  padding: 1rem 1rem;
 }
