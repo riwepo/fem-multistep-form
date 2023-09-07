@@ -11,7 +11,7 @@ import "./AddOn.css";
 
 const STEP_CODE = "PICK_ADD_ONS";
 
-function AddOn({ addOn, timespan }) {
+function AddOn({ addOn, timespan, autoFocus }) {
   const [isActive, setIsActive] = useState(false);
   const stepContext = useContext(StepContext);
 
@@ -30,6 +30,7 @@ function AddOn({ addOn, timespan }) {
   return (
     <Card
       className={`add-on ${isActive ? "add-on--active" : undefined}`}
+      autoFocus={autoFocus}
       onClick={clickHandler}
     >
       <div className="container flex">

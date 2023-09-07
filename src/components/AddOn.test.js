@@ -15,7 +15,11 @@ describe("add-on test suite", () => {
   test("renders AddOn with name and description", () => {
     render(
       <StepContextProvider>
-        <AddOn addOn={onlineAddOn} timespan={monthlyTimespan} />
+        <AddOn
+          addOn={onlineAddOn}
+          timespan={monthlyTimespan}
+          autoFocus={false}
+        />
       </StepContextProvider>
     );
     const nameElement = screen.getByText(onlineAddOn.name);
@@ -28,7 +32,11 @@ describe("add-on test suite", () => {
     const onlineAddOn = getAddOnByCode("ONLINE");
     render(
       <StepContextProvider>
-        <AddOn addOn={onlineAddOn} timespan={monthlyTimespan} />
+        <AddOn
+          addOn={onlineAddOn}
+          timespan={monthlyTimespan}
+          autoFocus={false}
+        />
       </StepContextProvider>
     );
     const checkmarkImageElement = screen.getByRole("img");
@@ -42,7 +50,11 @@ describe("add-on test suite", () => {
     const onlineAddOn = getAddOnByCode("ONLINE");
     render(
       <StepContextProvider>
-        <AddOn addOn={onlineAddOn} timespan={monthlyTimespan} />
+        <AddOn
+          addOn={onlineAddOn}
+          timespan={monthlyTimespan}
+          autoFocus={false}
+        />
       </StepContextProvider>
     );
     const checkmarkImageElement = screen.getByRole("img");
@@ -70,7 +82,11 @@ describe("add-on test suite", () => {
 
     render(
       <MockStepContextProvider>
-        <AddOn addOn={onlineAddOn} timespan={monthlyTimespan} />
+        <AddOn
+          addOn={onlineAddOn}
+          timespan={monthlyTimespan}
+          autoFocus={false}
+        />
       </MockStepContextProvider>
     );
 
@@ -99,12 +115,46 @@ describe("add-on test suite", () => {
 
     render(
       <MockStepContextProvider>
-        <AddOn addOn={onlineAddOn} timespan={monthlyTimespan} />
+        <AddOn
+          addOn={onlineAddOn}
+          timespan={monthlyTimespan}
+          autoFocus={false}
+        />
       </MockStepContextProvider>
     );
 
     const checkmarkImageElement = screen.getByRole("img");
     const divElement = checkmarkImageElement.closest("div"); // eslint-disable-line
     expect(divElement).toHaveAttribute("aria-selected", "true");
+  });
+
+  test("autoFocus false", () => {
+    const { container } = render(
+      <StepContextProvider>
+        <AddOn
+          addOn={onlineAddOn}
+          timespan={monthlyTimespan}
+          autoFocus={false}
+        />
+      </StepContextProvider>
+    );
+    const addOnDivElement = container.querySelector(".add-on"); // eslint-disable-line
+    expect(addOnDivElement).toBeInTheDocument();
+    expect(addOnDivElement).not.toHaveFocus();
+  });
+
+  test("autoFocus true", () => {
+    const { container } = render(
+      <StepContextProvider>
+        <AddOn
+          addOn={onlineAddOn}
+          timespan={monthlyTimespan}
+          autoFocus={true}
+        />
+      </StepContextProvider>
+    );
+    const addOnDivElement = container.querySelector(".add-on"); // eslint-disable-line
+    expect(addOnDivElement).toBeInTheDocument();
+    expect(addOnDivElement).toHaveFocus();
   });
 });
