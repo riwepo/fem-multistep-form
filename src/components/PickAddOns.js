@@ -12,9 +12,9 @@ const STEP_CODE = "PICK_ADD_ONS";
 function PickAddOns({ timespan }) {
   const pickAddOnsStep = getStepByCode(STEP_CODE);
   return (
-    <StepCard className="pick-add-ons" stepInfo={pickAddOnsStep}>
+    <StepCard className="pick-add-ons" stepInfo={pickAddOnsStep} autoFocus={false}>
       {ADD_ONS.map((addOn) => {
-        return <AddOn key={addOn.id} addOn={addOn} timespan={timespan} />;
+        return <AddOn key={addOn.id} addOn={addOn} timespan={timespan} autoFocus={addOn.id === 1} />;
       })}
     </StepCard>
   );
