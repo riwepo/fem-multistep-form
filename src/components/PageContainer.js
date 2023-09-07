@@ -57,11 +57,11 @@ function PageContainer() {
   const activeStep = getStepByCode(activeStepCode);
 
   return (
-    <div className="page-container grid">
-      <div className="progress-container">
+    <main className="page-container grid">
+      <aside className="progress-container">
         <ProgressIndicator steps={STEPS} activeStepNumber={activeStep.number} />
-      </div>
-      <div className="child-container">
+      </aside>
+      <section className="child-container">
         {activeStepCode === "PERSONAL_INFO" && <PersonalInfo />}
         {activeStepCode === "SELECT_PLAN" && (
           <SelectPlan
@@ -79,7 +79,7 @@ function PageContainer() {
           />
         )}
         {activeStepCode === "THANK_YOU" && <ThankYou />}
-      </div>
+      </section>
       {activeStep.nextStep !== "NONE" && (
         <StepControl
           canGoBack={!isFirstStep}
@@ -89,7 +89,7 @@ function PageContainer() {
           onFwdClicked={fwdClickHandler}
         />
       )}
-    </div>
+    </main>
   );
 }
 

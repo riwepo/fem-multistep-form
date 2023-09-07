@@ -21,7 +21,7 @@ function StepControl({
     onFwdClicked();
   };
   return (
-    <div className="step-control flex">
+    <footer className="step-control flex">
       <button
         className={`btn btn-back ${
           canGoBack ? "btn-back--visible" : undefined
@@ -39,7 +39,7 @@ function StepControl({
       >
         {isConfirm ? "Confirm" : "Next step"}
       </button>
-    </div>
+    </footer>
   );
 }
 
