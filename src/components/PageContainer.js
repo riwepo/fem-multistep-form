@@ -61,20 +61,25 @@ function PageContainer() {
       <div className="progress-container">
         <ProgressIndicator steps={STEPS} activeStepNumber={activeStep.number} />
       </div>
-      {activeStepCode === "PERSONAL_INFO" && <PersonalInfo />}
-      {activeStepCode === "SELECT_PLAN" && (
-        <SelectPlan
-          timespan={activeTimespan}
-          onTimespanChange={timerspanChangeHandler}
-        />
-      )}
-      {activeStepCode === "PICK_ADD_ONS" && (
-        <PickAddOns timespan={activeTimespan} />
-      )}
-      {activeStepCode === "FINISH_UP" && (
-        <FinishUp timespan={activeTimespan} onGoToPlanClick={goToPlanHandler} />
-      )}
-      {activeStepCode === "THANK_YOU" && <ThankYou />}
+      <div className="child-container">
+        {activeStepCode === "PERSONAL_INFO" && <PersonalInfo />}
+        {activeStepCode === "SELECT_PLAN" && (
+          <SelectPlan
+            timespan={activeTimespan}
+            onTimespanChange={timerspanChangeHandler}
+          />
+        )}
+        {activeStepCode === "PICK_ADD_ONS" && (
+          <PickAddOns timespan={activeTimespan} />
+        )}
+        {activeStepCode === "FINISH_UP" && (
+          <FinishUp
+            timespan={activeTimespan}
+            onGoToPlanClick={goToPlanHandler}
+          />
+        )}
+        {activeStepCode === "THANK_YOU" && <ThankYou />}
+      </div>
       {activeStep.nextStep !== "NONE" && (
         <StepControl
           canGoBack={!isFirstStep}
