@@ -14,7 +14,11 @@ const personalInfoStep = getStepByCode(STEP_CODE);
 
 function PersonalInfo() {
   return (
-    <StepCard className="personal-info" stepInfo={personalInfoStep}>
+    <StepCard
+      className="personal-info"
+      stepInfo={personalInfoStep}
+      autoFocus={false}
+    >
       {FIELDS.map((field) => {
         return (
           <PersonalInfoField
@@ -24,6 +28,7 @@ function PersonalInfo() {
             label={field.label}
             placeholder={field.placeholder}
             validator={field.validator}
+            autoFocus={field.id === 1}
           />
         );
       })}
