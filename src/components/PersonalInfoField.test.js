@@ -21,6 +21,7 @@ describe("personal info field suite", () => {
           label="label"
           placeholder="placeholder"
           validator={null}
+          autoFocus={false}
         />
       </StepContextProvider>
     );
@@ -37,6 +38,7 @@ describe("personal info field suite", () => {
           label="label"
           placeholder="placeholder"
           validator={null}
+          autoFocus={false}
         />
       </StepContextProvider>
     );
@@ -55,6 +57,7 @@ describe("personal info field suite", () => {
           label="label"
           placeholder="placeholder"
           validator={null}
+          autoFocus={false}
         />
       </StepContextProvider>
     );
@@ -72,6 +75,7 @@ describe("personal info field suite", () => {
           label="label"
           placeholder="placeholder"
           validator={validateName}
+          autoFocus={false}
         />
       </StepContextProvider>
     );
@@ -95,6 +99,7 @@ describe("personal info field suite", () => {
           label="label"
           placeholder="placeholder"
           validator={validator}
+          autoFocus={false}
         />
       </StepContextProvider>
     );
@@ -122,6 +127,7 @@ describe("personal info field suite", () => {
           label="label"
           placeholder="placeholder"
           validator={validator}
+          autoFocus={false}
         />
       </StepContextProvider>
     );
@@ -160,6 +166,7 @@ describe("personal info field suite", () => {
           label="label"
           placeholder="placeholder"
           validator={validateName}
+          autoFocus={false}
         />
       </MockStepContextProvider>
     );
@@ -201,6 +208,7 @@ describe("personal info field suite", () => {
           label="label"
           placeholder="placeholder"
           validator={validateName}
+          autoFocus={false}
         />
       </MockStepContextProvider>
     );
@@ -239,11 +247,48 @@ describe("personal info field suite", () => {
           label="label"
           placeholder="placeholder"
           validator={validateName}
+          autoFocus={false}
         />
       </MockStepContextProvider>
     );
 
     const inputElement = screen.getByRole("textbox");
     expect(inputElement.value).toBe("some value");
+  });
+
+  test("autoFocus false", () => {
+    render(
+      <StepContextProvider>
+        <PersonalInfoField
+          type="text"
+          id="name"
+          label="label"
+          placeholder="placeholder"
+          validator={null}
+          autoFocus={false}
+        />
+      </StepContextProvider>
+    );
+    const inputElement = screen.getByRole("textbox");
+    expect(inputElement).toBeInTheDocument();
+    expect(inputElement).not.toHaveFocus();
+  });
+
+  test("autoFocus true", () => {
+    render(
+      <StepContextProvider>
+        <PersonalInfoField
+          type="text"
+          id="name"
+          label="label"
+          placeholder="placeholder"
+          validator={null}
+          autoFocus={true}
+        />
+      </StepContextProvider>
+    );
+    const inputElement = screen.getByRole("textbox");
+    expect(inputElement).toBeInTheDocument();
+    expect(inputElement).toHaveFocus();
   });
 });

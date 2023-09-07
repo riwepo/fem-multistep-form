@@ -6,7 +6,14 @@ import "./PersonalInfoField.css";
 
 const STEP_CODE = "PERSONAL_INFO";
 
-function PersonalInfoField({ type, id, label, placeholder, validator }) {
+function PersonalInfoField({
+  type,
+  id,
+  label,
+  placeholder,
+  validator,
+  autoFocus,
+}) {
   const [enteredValue, setEnteredValue] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const stepContext = useContext(StepContext);
@@ -56,6 +63,7 @@ function PersonalInfoField({ type, id, label, placeholder, validator }) {
         onChange={changeHandler}
         onBlur={blurHandler}
         value={enteredValue}
+        autoFocus={autoFocus}
       />
     </div>
   );
